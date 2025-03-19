@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="container pt-5">
+    <div class="row">
+        <div class="col-sm-6">We play folk dance music from across Europe and beyond, on acoustic instruments, in a relaxed atmosphere at our weekly sessions.
+
+We hope to capture the easy-going nature of a pub session but with some structure to allow all players to join in with confidence.
+
+The band has been playing together for some time.  We organise several of our own ceilidhs each year.
+We are also hired to play at other events such as community barn dances, private parties and weddings. We put a band together specifically for each event depending on the requirements. We like to give members time to familiarise themselves with the many tunes we play at these events (and the way we play them) before inviting them to join us on these occasions.
+        </div>
+        <div class="col-sm-6">
+            <img src="{% static 'pages/band-ashover-3.png' %}" alt="Band photo at Ashover" class="img-fluid">
+        </div>
+    </div>
+<br>
+<br>
+
+{% if user.is_authenticated %}
+
+{% else %}
+
+{% endif %}
+
+</div>
+
+
+{% endblock content %}

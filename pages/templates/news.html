@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-2">
+    {% block page_title %}
+    <h2>News</h2>
+    {% endblock page_title%}
+    <div class="table-responsive">
+        
+        {% for article in articles|dictsort:"article_created_at" %}
+
+
+
+          <div class="card mb-3" >
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="{% get_media_prefix %}{{ article.image_file }}" class="img-fluid rounded-start" alt="Image">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h4 class="card-title">{{ article.heading }}</h4>
+                  <p class="card-text">{{ article.content_text }}</p>
+                  <p class="card-footer text-muted text-end">{{ article.article_created_at|date:"d-m-Y"}}</p>
+
+
+                </div>
+              </div>
+            </div>
+          </div>          
+          {% endfor %}
+ 
+        
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

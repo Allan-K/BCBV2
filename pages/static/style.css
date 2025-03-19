@@ -1,0 +1,21 @@
+body {
+   background-image: url('Instruments.png');
+   opacity:1;
+   background-blend-mode: normal;
+   background-size: cover;
+   
+}
+
+.pt-5 {
+   background-color: blanchedalmond;
+   min-height: 25em;
+   padding-top: 10px;
+}
+
+ .h1 {
+    color: rgb(95, 53, 2);
+ } 
+
+ #heading{
+   background-color: blanchedalmond;
+ }

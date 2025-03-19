@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+{% block page_title %}
+<h2>Music Catalogue</h2>
+{% endblock page_title%}
+
+<div class="table-responsive">
+    
+<table class="table table-striped">
+    <thead>
+        <th scope=""col>Title</th>
+        <th scope=""col>Description</th>
+        <th scope=""col>ID</th>
+        <th scope=""col>File</th>
+    </thead>
+    <tbody>
+        {% for tune in score|dictsort:"title" %}
+            <tr>
+                <td scope="row">{{ tune.title }}</td>
+                <td scope="row">{{ tune.description }}</td>
+                <td scope="row">{{ tune.id }}</td>
+                <td scope="row"><a href="{{ tune.title }}" class="btn btn-secondary btn-sm" target="_blank">Download PDF</a></td>
+            </tr>
+
+        {% endfor %}
+    </tbody>
+</table>
+
+
+</div>
+{% endblock content %}

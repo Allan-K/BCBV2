@@ -5,8 +5,8 @@ from django.contrib import messages
 from django.urls import reverse_lazy
 from django.http import HttpResponse, FileResponse
 from django.template import loader
-from .forms import SongsForm, NewsForm
-from pages.models import Songs, News
+from .forms import SongsForm, NewsForm, GalleryForm
+from pages.models import Songs, News, Gallery
 from django.core.files.storage import FileSystemStorage
 
 def index (request):
@@ -92,8 +92,24 @@ def add_tune(request):
 
 
 def gallery(request):
+    articles = Gallery.objects.all()
+    ordering = ['article_created_at']
+    return render(request, 'gallery.html', {'articles':articles})
 
-    return render(request, 'gallery.html', {})
+def add_gallery_item(request):
+    if request.method == 'POST':
+        form = GalleryForm(request.POST, request.FILES)
+        print('here')
+        if form.is_valid():
+            form.save()
+            return redirect('gallery')
+        else:
+            print('Not Here')
+    else:
+        print('here 2')
+        form = GalleryForm()
+    return render(request, 'add_gallery_item.html', {'form':form})
+
 
 def add_news_item(request):
     if request.method == 'POST':
@@ -112,6 +128,7 @@ def add_news_item(request):
 
 def news(request):
     articles = News.objects.all()
+    ordering = ['article_created_at']
     return render(request, 'news.html', {'articles':articles})
 
 

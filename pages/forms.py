@@ -3,7 +3,7 @@ from django.contrib.auth.forms import AdminUserCreationForm, UserChangeForm, Set
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import ModelForm
-from pages.models import CustomUser, Songs, News
+from pages.models import CustomUser, Songs, News, Gallery
 
 
 class CustomUserCreationForm(AdminUserCreationForm):
@@ -58,6 +58,16 @@ class SongsForm(ModelForm):
 class NewsForm(ModelForm):
     class Meta:
         model = News
+        fields = ('heading', 'content_text', 'image_file', 'article_created_at')
+
+        widgets = {
+            'heading': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Heading'}),
+            'content_text': forms.Textarea(attrs={'class':'form-control', 'placeholder':'Description'}),
+        }
+
+class GalleryForm(ModelForm):
+    class Meta:
+        model = Gallery
         fields = ('heading', 'content_text', 'image_file', 'article_created_at')
 
         widgets = {

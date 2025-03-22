@@ -21,7 +21,11 @@
                 <td scope="row">{{ tune.title }}</td>
                 <td scope="row">{{ tune.description }}</td>
                 <td scope="row">{{ tune.id }}</td>
-                <td scope="row"><a href="{{ tune.title }}" class="btn btn-secondary btn-sm" target="_blank">Download PDF</a></td>
+            {% if tune.file %}
+                <td scope="row"><a href="{{ MEDIA_URL}}{{tune.file}}" class="btn btn-secondary btn-sm" target="_blank" >Download PDF</a></td>
+            {% else %}
+                <td scope="row"><small>No file avaiable</small></td>
+            {% endif %}
             </tr>
 
         {% endfor %}

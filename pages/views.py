@@ -1,9 +1,11 @@
+import os
+from django.conf import settings
 from django.shortcuts import render, redirect, HttpResponseRedirect
 from .forms import CustomUserCreationForm, ChangePasswordForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.urls import reverse_lazy
-from django.http import HttpResponse, FileResponse
+from django.http import HttpResponse, Http404, FileResponse
 from django.template import loader
 from .forms import SongsForm, NewsForm, GalleryForm
 from pages.models import Songs, News, Gallery
@@ -27,7 +29,7 @@ def registration(request):
 
 def loginBCB(request):
     if request.method == "POST":
-        # Attempt to sign user in
+        # Attempt to sign user inpk.id
         username = request.POST["username"]
         password = request.POST["password"]
         user = authenticate(request, username=username, password=password)
@@ -89,6 +91,28 @@ def add_tune(request):
         print('here 2')
         form = SongsForm()
     return render(request, 'add_tune.html', {'form':form})
+
+
+def download_music(request, name):
+    file = os.path.join(settings.BASE_DIR, 'uploads/songs/',name)
+    with open(file, 'rb') as pdf:
+        response = HttpResponse(pdf.read(), content_type='application/pdf')
+        #response['Content-Disposition'] = 'inline;filename=some_file.pdf'
+        return response
+    pdf.closed
+
+
+
+ 
+    #file = os.path.join(settings.BASE_DIR, 'uploads/songs/',name)
+    #fileopened = FileResponse(open(file, 'rb'))
+    #file_name = file
+    #fileopened['Content-Disposition'] = 'inline; filename=' + file_name
+
+  
+    #return fileopened
+
+
 
 
 def gallery(request):

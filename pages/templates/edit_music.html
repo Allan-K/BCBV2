@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags % }
+{% block content %}
+
+
+{% block page_title %}
+<h2>Edit Entry</h2>
+{% endblock page_title%}
+<div class="container mt-3">
+
+    <form action="/edit_music/{{ edit_score.id }}/" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <div class="form-group">
+        <input class="form-control"  name='title' type="text" value = '{{ edit_score.title }}' placeholder="Title" readonly></p>
+        </div>
+        <div class="form-group">
+        <input class="form-control" name='description' type="text" value = '{{ edit_score.description}}' placeholder="Description" ></p>
+        </div>
+
+
+        <button type="submit" class="btn btn-secondary">Save Update</button>
+    </form>
+
+</div>
+
+{% endblock content %}

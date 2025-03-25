@@ -12,20 +12,26 @@
     <thead>
         <th scope=""col>Title</th>
         <th scope=""col>Description</th>
-        <th scope=""col>ID</th>
+        <th scope=""col>Set</th>
         <th scope=""col>File</th>
+        <th>Edit</th>
     </thead>
     <tbody>
         {% for tune in score|dictsort:"title" %}
             <tr>
                 <td scope="row">{{ tune.title }}</td>
                 <td scope="row">{{ tune.description }}</td>
-                <td scope="row">{{ tune.id }}</td>
+            {% if tune.is_set %}
+                <td scope="row">Yes</td>
+            {% else %}
+                <td scope="row">1</td>
+            {% endif %}
             {% if tune.file %}
                 <td scope="row"><a href="{{ MEDIA_URL}}{{tune.file}}" class="btn btn-secondary btn-sm" target="_blank" >Download PDF</a></td>
             {% else %}
                 <td scope="row"><small>No file avaiable</small></td>
             {% endif %}
+            <td scope="row"><a href="{% url 'edit_music' tune.id %}" class="btn btn-secondary btn-sm" target="_blank" >Edit</a></td></td>
             </tr>
 
         {% endfor %}

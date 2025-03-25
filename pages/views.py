@@ -10,6 +10,7 @@ from django.template import loader
 from .forms import SongsForm, NewsForm, GalleryForm
 from pages.models import Songs, News, Gallery
 from django.core.files.storage import FileSystemStorage
+from django.views.generic.edit import UpdateView
 
 def index (request):
   template = loader.get_template('index.html')
@@ -102,17 +103,20 @@ def download_music(request, name):
     pdf.closed
 
 
-
- 
-    #file = os.path.join(settings.BASE_DIR, 'uploads/songs/',name)
-    #fileopened = FileResponse(open(file, 'rb'))
-    #file_name = file
-    #fileopened['Content-Disposition'] = 'inline; filename=' + file_name
-
-  
-    #return fileopened
-
-
+def edit_music(request, id):
+    edit_score = Songs.objects.get(id=id)
+    if request.method == "POST":
+        stitle = request.POST['title']
+        sdesc = request.POST['description']
+        sset = request.POST['is_set']
+        edit_score.title = stitle
+        edit_score.description = sdesc
+        edit_score.is_set = sset
+        edit_score.save()        
+        return redirect('music')
+    edit_score = Songs.objects.get(id=id)
+    context = {"edit_score":edit_score}
+    return render(request, 'edit_music.html', context=context)
 
 
 def gallery(request):

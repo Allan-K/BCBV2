@@ -94,6 +94,7 @@ def add_tune(request):
     return render(request, 'add_tune.html', {'form':form})
 
 
+
 def download_music(request, name):
     file = os.path.join(settings.BASE_DIR, 'uploads/songs/',name)
     with open(file, 'rb') as pdf:
@@ -108,12 +109,15 @@ def edit_music(request, id):
     if request.method == "POST":
         stitle = request.POST['title']
         sdesc = request.POST['description']
-        sset = request.POST['is_set']
+        #sset = request.POST['is_set']
+        #sfile = request.POST['file']
         edit_score.title = stitle
         edit_score.description = sdesc
-        edit_score.is_set = sset
+        #edit_score.is_set = sset
+        #edit_score.file = sfile
         edit_score.save()        
-        return redirect('music')
+        return HttpResponseRedirect('music')
+    print('here')
     edit_score = Songs.objects.get(id=id)
     context = {"edit_score":edit_score}
     return render(request, 'edit_music.html', context=context)

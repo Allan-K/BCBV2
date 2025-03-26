@@ -55,6 +55,7 @@ class SongsForm(ModelForm):
             'description': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Description'}),
         }
 
+
 class NewsForm(ModelForm):
     class Meta:
         model = News

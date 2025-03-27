@@ -14,13 +14,17 @@ class Songs(models.Model):
     title = models.CharField(max_length=50, null=True, unique=True)
     description = models.TextField(blank=True)
     is_set = models.BooleanField(default=False)
-    file = models.FileField(upload_to="songs/", blank=True)
+    file = models.FileField(upload_to="", blank=True)
 
     class Meta:
         ordering = ['id']
 
     def __str__(self):
         return str(self.title)
+    
+    def delete(self):
+        self.file.delete()
+        super().delete()
     
 class News(models.Model):
     heading = models.CharField(max_length=250)

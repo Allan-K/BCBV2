@@ -1,6 +1,6 @@
 import os
 from django.conf import settings
-from django.shortcuts import render, redirect, HttpResponseRedirect
+from django.shortcuts import render, redirect, HttpResponseRedirect, get_object_or_404
 from .forms import CustomUserCreationForm, ChangePasswordForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
@@ -19,11 +19,11 @@ def index (request):
 def registration(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
+        if form.is_valid():edit_music
+        form.save()
             #login(request, user)
 
-            return redirect("/")
+        return redirect("/")
     else:
         form= CustomUserCreationForm()
     return render(request, 'registration.html', {'form': form})
@@ -46,10 +46,11 @@ def loginBCB(request):
             })
     else:
         return render(request, "login.html")
-
+    
 def logoutBCB(request):
     logout(request)
     return render(request, "index.html")
+
 
 def update_password(request):
     if request.user.is_authenticated:
@@ -67,9 +68,9 @@ def update_password(request):
                     messages.error(request, error)
                 print("failure")
                 return redirect('update_password')
-        else:
-            form = ChangePasswordForm(current_user)
-            return render(request, "update_password.html", {'form':form})
+        else:edit_music
+        form = ChangePasswordForm(current_user)
+        return render(request, "update_password.html", {'form':form})
     else:
         messages.success(request, "User must be logged in to do this")
         return redirect('loginBCB')
@@ -92,6 +93,12 @@ def add_tune(request):
         print('here 2')
         form = SongsForm()
     return render(request, 'add_tune.html', {'form':form})
+
+def delete_tune(request, id):
+    song = get_object_or_404(Songs, id=id)
+    song.delete()
+    return redirect('music')
+    pass
 
 
 
@@ -121,6 +128,24 @@ def edit_music(request, id):
     edit_score = Songs.objects.get(id=id)
     context = {"edit_score":edit_score}
     return render(request, 'edit_music.html', context=context)
+
+def update_file(request, id):
+    if request.method == 'POST':
+        file = request.FILES['update_file']
+
+        file_name = request.FILES['update_file'].name
+        folder = 'songs/'
+        fs = FileSystemStorage()
+        file = fs.save(file.name, file)
+        print(file)
+        fileurl = fs.url(file)
+        report = file_name
+
+        Songs.objects.filter(id=id).update(file=file)
+
+        return redirect('music')
+    else:
+        return render(request, 'update_file.html')
 
 
 def gallery(request):

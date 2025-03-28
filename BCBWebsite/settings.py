@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-8(gm#(5u!-8udbp5ij%6dl7y*g66=7h6db%8qz@o98ccs76lvf
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['kallan.pythonanywhere.com', 'localhost']
 
 
 # Application definition
@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'pages',
-    'crispy_forms',
+    #'crispy_forms',
 ]
 
 

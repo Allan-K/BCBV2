@@ -103,7 +103,7 @@ def delete_tune(request, id):
 
 
 def download_music(request, name):
-    file = os.path.join(settings.BASE_DIR, 'uploads/songs/',name)
+    file = os.path.join(settings.BASE_DIR, 'uploads/',name)
     with open(file, 'rb') as pdf:
         response = HttpResponse(pdf.read(), content_type='application/pdf')
         #response['Content-Disposition'] = 'inline;filename=some_file.pdf'

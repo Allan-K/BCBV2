@@ -20,11 +20,6 @@
         <div class="form-group">
         <input class="form-control" name='is_set' type="text" value = '{{ edit_score.is_set}}' placeholder="Is_Set" ></p>
         </div>
-        {% if edit_score.file %}
-        <td scope="row"></td>
-        {% else %}
-        <input class="form-control" name='description' type="file" value = '{{ edit_score.file }}' placeholder="file" ></p>
-        {% endif %}
 
         <button type="submit" class="btn btn-secondary">Save Update</button>
         <a href="{% url 'delete_tune' edit_score.id %}">Delete song</a>

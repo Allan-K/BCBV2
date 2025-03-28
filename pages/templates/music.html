@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
+{% load static %}
 
 
 {% block page_title %}
 <h2>Music Catalogue</h2>
 {% endblock page_title%}
-
+{% include 'search_music.html' %}
 <div class="table-responsive">
     
 <table class="table table-striped">
@@ -26,11 +27,9 @@
             {% else %}
                 <td scope="row">No</td>
             {% endif %}
-            {% if tune.file %}
-                <td scope="row"><a href="{{ MEDIA_URL}}{{tune.file}}" class="btn btn-secondary btn-sm" target="-blank">Download PDF</a></td>
-            {% else %}
-                <td scope="row"><a href="{% url 'update_file' tune.id %}" class="btn btn-warning btn-sm">Upload Tune</a></td>
-            {% endif %}
+
+            <td scope="row"><a href="{{ MEDIA_URL}}{{tune.file}}" class="btn btn-secondary btn-sm" target="-blank">Download PDF</a></td>
+
             <td scope="row"><a href="{% url 'edit_music' tune.id %}" class="btn btn-secondary btn-sm">Edit</a></td></td>
             </tr>
 

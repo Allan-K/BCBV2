@@ -14,7 +14,7 @@ urlpatterns = [
     path('edit_music/<int:id>', views.edit_music, name='edit_music'),
     path('delete_tune/<int:id>', views.delete_tune, name='delete_tune'),
     path('add_tune/', views.add_tune, name='add_tune'),
-    path('update_file/<int:id>/', views.update_file, name='update_file'),
+    path('search_music/', views.search_music, name='search_music'),
     path('gallery/', views.gallery, name='gallery'),
     path('news/', views.news, name='news'),
     path('add_news_item/', views.add_news_item, name='add_news_item'),
@@ -22,8 +22,6 @@ urlpatterns = [
     path('add_gallery_item/', views.add_gallery_item, name='add_gallery_item'),
     path('links/', views.links, name='links'),
     path('contact/', views.contact, name='contact'),
-    #path('process_add_tune/', views.process_add_tune, name='process_add_tune'),
-    #path('songs/', views.success, name='download_tune'),
 
 ]
 

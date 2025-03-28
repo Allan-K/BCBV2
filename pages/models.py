@@ -14,7 +14,7 @@ class Songs(models.Model):
     title = models.CharField(max_length=50, null=True, blank=True, unique=True)
     description = models.TextField(blank=True)
     is_set = models.BooleanField(default=False)
-    file = models.FileField(upload_to="songs", blank=True)
+    file = models.FileField(upload_to="songs/")
 
     class Meta:
         ordering = ['id']

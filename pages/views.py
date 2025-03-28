@@ -79,6 +79,13 @@ def music(request):
     score = Songs.objects.all()
     return render(request, "music.html", {'score': score})
 
+def search_music(request):
+    score = Songs.objects.filter(title__startswith='B')
+    #initials = list(score)
+    print('first ', score)
+    #print('Initials ', initials)
+    return render(request, "music.html", {'score': score})
+
 
 def add_tune(request):
     if request.method == 'POST':
@@ -115,8 +122,8 @@ def edit_music(request, id):
     edit_score = Songs.objects.get(id=id)
     if request.method == "POST":
         edit_score.title = request.POST['title']
-        edit_score.desc = request.POST['description']
-        edit_score.set = request.POST['is_set']
+        edit_score.description = request.POST['description']
+        edit_score.is_set = request.POST['is_set']
         edit_score.save()        
         return redirect('music')
     print('here')

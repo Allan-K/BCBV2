@@ -103,7 +103,7 @@ def delete_tune(request, id):
 
 
 def download_music(request, name):
-    file = os.path.join(settings.BASE_DIR, 'uploads/',name)
+    file = os.path.join(settings.BASE_DIR, 'uploads/songs/',name)
     with open(file, 'rb') as pdf:
         response = HttpResponse(pdf.read(), content_type='application/pdf')
         #response['Content-Disposition'] = 'inline;filename=some_file.pdf'
@@ -114,16 +114,11 @@ def download_music(request, name):
 def edit_music(request, id):
     edit_score = Songs.objects.get(id=id)
     if request.method == "POST":
-        stitle = request.POST['title']
-        sdesc = request.POST['description']
-        #sset = request.POST['is_set']
-        #sfile = request.POST['file']
-        edit_score.title = stitle
-        edit_score.description = sdesc
-        #edit_score.is_set = sset
-        #edit_score.file = sfile
+        edit_score.title = request.POST['title']
+        edit_score.desc = request.POST['description']
+        edit_score.set = request.POST['is_set']
         edit_score.save()        
-        return HttpResponseRedirect('music')
+        return redirect('music')
     print('here')
     edit_score = Songs.objects.get(id=id)
     context = {"edit_score":edit_score}

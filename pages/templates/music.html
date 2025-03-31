@@ -4,9 +4,9 @@
 
 
 {% block page_title %}
-<h2>Music Catalogue</h2>
+<div class="row"><h2>Music Catalogue</h2>{% include 'search_music.html' %}</div>
 {% endblock page_title%}
-{% include 'search_music.html' %}
+
 <div class="table-responsive">
     
 <table class="table table-striped">
@@ -21,7 +21,7 @@
         {% for tune in score|dictsort:"title" %}
             <tr>
                 <td scope="row">{{ tune.title }}</td>
-                <td scope="row">{{ tune.description }}</td>
+                <td scope="row"><small>{{ tune.description }}</small></td>
             {% if tune.is_set %}
                 <td scope="row">Yes</td>
             {% else %}

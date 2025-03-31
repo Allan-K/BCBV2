@@ -10,11 +10,14 @@ from django.template import loader
 from .forms import SongsForm, NewsForm, GalleryForm
 from pages.models import Songs, News, Gallery
 from django.core.files.storage import FileSystemStorage
+from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Q
 from django.views.generic.edit import UpdateView
 
 def index (request):
-  template = loader.get_template('index.html')
-  return HttpResponse(template.render())
+  return render(request, 'index.html', {})
+  #template = loader.get_template('index.html')
+  #return HttpResponse(template.render())
 
 def registration(request):
     if request.method == 'POST':
@@ -80,11 +83,14 @@ def music(request):
     return render(request, "music.html", {'score': score})
 
 def search_music(request):
-    score = Songs.objects.filter(title__startswith='B')
-    #initials = list(score)
-    print('first ', score)
-    #print('Initials ', initials)
-    return render(request, "music.html", {'score': score})
+    if request.method == 'GET':
+        value = request.GET['title']
+        if value == '':
+            messages.success(request, "Please enter a search criteria")
+            score = Songs.objects.all()
+        else:
+            score = Songs.objects.filter(title__startswith = value)
+        return render(request, "music.html", {'score':score})
 
 
 def add_tune(request):

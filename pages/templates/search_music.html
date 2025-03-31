@@ -4,10 +4,32 @@
 
 
 {% block page_title %}
-<h2>Search</h2>
+
 {% endblock page_title%}
 
-<a href="{% url 'search_music' %}">Search</a>
+<div>
+
+<form action="{% url 'search_music' %}" name='search' method="'GET">
+    <div class="input-group">
+        <input class="form-control"  name='title' type="search" placeholder="Search"></p>
+        <button type="submit" class="btn btn-secondary"  class="glyphicon glyphicon-search">Search</button>
+    </div>
+</form>
+<br>   
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    {{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+
+{% endif %}
+
+
+</div>
+
 
 
 

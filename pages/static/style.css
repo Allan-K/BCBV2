@@ -25,3 +25,16 @@ body {
    height: 15vw;
    object-fit: cover;
  }
+
+ .card-title{
+   font-size: 1rem;
+   font-weight: 900;
+ }
+
+ .card-text{
+   font-size: 0.75rem;
+ }
+
+ #delete{
+  background: url(../static/pages/red-x.svg)
+ }

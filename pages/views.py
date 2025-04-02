@@ -111,8 +111,6 @@ def delete_tune(request, id):
     song = get_object_or_404(Songs, id=id)
     song.delete()
     return redirect('music')
-    pass
-
 
 
 def download_music(request, name):
@@ -174,6 +172,11 @@ def add_gallery_item(request):
         print('here 2')
         form = GalleryForm()
     return render(request, 'add_gallery_item.html', {'form':form})
+
+def delete_gallery_item(request, id):
+    img = get_object_or_404(Gallery, id=id)
+    img.delete()
+    return redirect('gallery')
 
 
 def add_news_item(request):

@@ -49,3 +49,7 @@ class Gallery(models.Model):
 
     def __str__(self):
         return str(self.heading)
+    
+    def delete(self):
+        self.image_file.delete()
+        super().delete()

@@ -22,7 +22,9 @@
                   <h4 class="card-title">{{ article.heading }}</h4>
                   <p class="card-text">{{ article.content_text|linebreaks }}</p>
                   <p class="card-footer text-muted text-end">{{ article.article_created_at|date:"d-m-Y"}}</p>
-
+                  {% if user.is_authenticated %}
+                  <a href="{% url 'delete_news_item' article.id %}" class='float-end'>Delete this news item</a>
+                  {% endif %}
 
                 </div>
               </div>

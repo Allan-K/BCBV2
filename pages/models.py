@@ -38,6 +38,10 @@ class News(models.Model):
     def __str__(self):
         return str(self.heading)
     
+    def delete(self):
+        self.image_file.delete()
+        super().delete()
+    
 class Gallery(models.Model):
     heading = models.CharField(max_length=250)
     content_text = models.TextField(blank=True)

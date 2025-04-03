@@ -199,6 +199,11 @@ def news(request):
     ordering = ['article_created_at']
     return render(request, 'news.html', {'articles':articles})
 
+def delete_news_item(request, id):
+    img = get_object_or_404(News, id=id)
+    img.delete()
+    return redirect('news')
+
 
 def links(request):
 

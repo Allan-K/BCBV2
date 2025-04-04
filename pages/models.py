@@ -57,3 +57,10 @@ class Gallery(models.Model):
     def delete(self):
         self.image_file.delete()
         super().delete()
+
+class Links(models.Model):
+    link_name = models.URLField()
+    description = models.TextField(blank=True)
+
+    class Meta:
+        ordering=['link_name']

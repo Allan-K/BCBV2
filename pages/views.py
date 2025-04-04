@@ -7,8 +7,8 @@ from django.contrib import messages
 from django.urls import reverse_lazy
 from django.http import HttpResponse, Http404, FileResponse
 from django.template import loader
-from .forms import SongsForm, NewsForm, GalleryForm
-from pages.models import Songs, News, Gallery
+from .forms import SongsForm, NewsForm, GalleryForm, LinkForm
+from pages.models import Songs, News, Gallery, Links
 from django.core.files.storage import FileSystemStorage
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
@@ -206,8 +206,24 @@ def delete_news_item(request, id):
 
 
 def links(request):
+    links = Links.objects.all()
+    ordering = ['article_created_at']
+    return render(request, 'links.html', {'links':links})
 
-    return render(request, 'links.html', {})
+
+def add_link(request):
+    if request.method == 'POST':
+        form = LinkForm(request.POST)
+        print('here')
+        if form.is_valid():
+            form.save()
+            return redirect('links')
+        else:
+            print('Not Here')
+    else:
+        print('here 2')
+        form = LinkForm()
+    return render(request, 'add_link.html', {'form':form})
 
 def contact(request):
 

@@ -12,7 +12,7 @@
                 <a class="nav-link" href="{% url 'gallery' %}">Gallery</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'links' %}">Links</a>
+                    <a class="nav-link" href="{% url 'links' %}">Useful Links</a>
                 </li>
                 {% if user.is_authenticated %}
                 <li class="nav-item">
@@ -48,6 +48,9 @@
                 </li> 
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'add_gallery_item' %}">Add Gallery Item</a>
+                </li> 
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'add_link' %}">Add Useful Link Item</a>
                 </li> 
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'update_password' %}">Update Password</a>

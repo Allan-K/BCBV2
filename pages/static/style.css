@@ -2,8 +2,14 @@ body {
    background-image: url('Instruments.png');
    opacity:1;
    background-blend-mode: normal;
-   background-size: cover;
-   
+   background-size: cover;  
+   min-height: 100vh;
+}
+
+
+.container-fluid{
+  max-width: 85%;
+  min-height: 95%;
 }
 
 .pt-5 {

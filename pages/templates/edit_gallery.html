@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags % }
+{% block content %}
+
+
+{% block page_title %}
+<h2 class="display-6">Edit Image</h2>
+{% endblock page_title%}
+<div class="container mt-3">
+
+    <form action="{% url 'edit_gallery' edit_img.id %}" method="POST">
+        {% csrf_token %}
+        
+        <div class="form-group">
+        <input class="form-control"  name='heading' type="text" value = '{{ edit_img.heading }}' placeholder="Title"></p>
+        </div>
+        <div class="form-group">
+        <input class="form-control" name='content_text' type="text" value = '{{ edit_img.content_text }}' placeholder="Description" ></p>
+        </div>
+
+        <button type="submit" class="btn btn-secondary">Save Update</button>
+        <a href="{% url 'delete_gallery_item' edit_img.id %}">Delete Image</a>
+    </form>
+
+</div>
+<br><br>
+{% endblock content %}

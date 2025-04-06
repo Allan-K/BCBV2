@@ -5,7 +5,7 @@
 {% block content %}
 <div class="container mt-2">
     {% block page_title %}
-    <h2>Gallery</h2>
+    <h2 class="display-6">Gallery</h2>
     {% endblock page_title%}
 
     <div class="table-responsive">
@@ -20,10 +20,10 @@
                   <div class="card-body">
                     <div class="row">
                       {% if user %}
-                        <div class="col"><h5 class="card-title">{{ article.heading }}</h5></div> 
+                        <div class="col"><h6 class="card-title">{{ article.heading }}</h6></div> 
                         {% endif %}
                         {% if user.is_authenticated %}
-                        <div class="col"><a class=" btn btn-danger btn-sm float-end" role="button" href="{% url 'delete_gallery_item' article.id %}">x</a></div>
+                        <div class="col"><a class=" btn btn-danger btn-sm float-end" role="button" href="{% url 'edit_gallery' article.id %}">Edit</a></div>
                         {% endif %}
                     </div> 
                     <div class="row">

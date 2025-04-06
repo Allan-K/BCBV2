@@ -4,7 +4,7 @@
 
 
 {% block page_title %}
-<div class="row"><h2>Useful Links</h2></div>
+<div class="row"><h2 class="display-6">Useful Links</h2></div>
 {% endblock page_title%}
 
 <div class="table-responsive">
@@ -19,7 +19,7 @@
 {% for link in links %}  
             <tr>
                 <td scope="row"><small>{{ link.description }}</small></td>
-                <td scope="row"><a href="{{ MEDIA_URL}}{{link.link_name}}" class="btn btn-secondary btn-sm" target="-blank">Click Here</a></td>
+                <td class="row align-middle" ><a href="{{ MEDIA_URL}}{{link.link_name}}" class="btn btn-secondary btn-sm" target="-blank">Click Here</a></td>
             </tr>
     </tbody>
 {% endfor %}    

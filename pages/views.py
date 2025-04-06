@@ -225,6 +225,19 @@ def add_link(request):
         form = LinkForm()
     return render(request, 'add_link.html', {'form':form})
 
+
+def edit_gallery(request, id):
+    edit_img = Gallery.objects.get(id=id)
+    if request.method == "POST":
+        edit_img.heading= request.POST['heading']
+        edit_img.content_text = request.POST['content_text']
+        edit_img.save()        
+        return redirect('gallery')
+    print('here')
+    edit_img = Gallery.objects.get(id=id)
+
+    return render(request, 'edit_gallery.html', {"edit_img":edit_img})
+
 def contact(request):
 
     return render(request, 'contact.html', {})

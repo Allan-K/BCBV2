@@ -16,6 +16,7 @@ urlpatterns = [
     path('add_tune/', views.add_tune, name='add_tune'),
     path('search_music/', views.search_music, name='search_music'),
     path('gallery/', views.gallery, name='gallery'),
+    path('edit_gallery/<int:id>', views.edit_gallery, name='edit_gallery'),
     path('links/', views.links, name='links'),
     path('add_link/', views.add_link, name='add_link'),
     path('delete_gallery_item/<int:id>', views.delete_gallery_item, name='delete_gallery_item'),

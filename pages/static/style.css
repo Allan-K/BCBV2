@@ -22,13 +22,14 @@ body {
     color: rgb(95, 53, 2);
  } 
 
+
  #heading{
    background-color: blanchedalmond;
  }
 
  .card-img-top{
    width: 100%;
-   height: 15vw;
+   height: 100%;
    object-fit: cover;
  }
 

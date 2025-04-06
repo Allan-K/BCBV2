@@ -82,6 +82,6 @@ class LinkForm(ModelForm):
         fields = ('link_name', 'description')
 
         widgets = {
-            'link_name': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Link'}),
+            'link_name': forms.TextInput(attrs={'class':'form-control', 'placeholder':'URL Link'}),
             'description': forms.Textarea(attrs={'class':'form-control', 'placeholder':'Description'}),
         } 

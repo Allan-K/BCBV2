@@ -2,7 +2,7 @@
 {% block content %}
 
 {% block page_title %}
-<h2>Add a Link Item</h2>
+<h2 class="display-6">Add a Link Item</h2>
 {% endblock page_title%}
 
 {% if messages %}
@@ -19,7 +19,7 @@
         {% csrf_token %}
         {{ form.as_p }}
 
-        <button type="submit" class="btn btn-secondary">Save Picture</button>
+        <button type="submit" class="btn btn-secondary">Save Link</button>
     </form>
 </div>
 

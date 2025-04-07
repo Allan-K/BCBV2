@@ -42,4 +42,6 @@ body {
    font-size: 0.75rem;
  }
 
-
+.dropdown-item{
+  color:white;
+}

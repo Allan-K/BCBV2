@@ -1,8 +1,14 @@
-    
-    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+
+      
+      <nav class="navbar navbar-expand-lg navbar-dark bg-success">
         <div class="container">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          
+          <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
             <ul class="navbar-nav">
-                <li class="nav-item">
+              <li class="nav-item">
                 <a class="nav-link" href="{% url 'index' %}">Home</a>
                 </li>
                 <li class="nav-item">
@@ -14,45 +20,40 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'links' %}">Useful Links</a>
                 </li>
-                {% if user.is_authenticated %}
                 <li class="nav-item">
+                  <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+              </li>
+
+                {% if user.is_authenticated %}
+              <li class="nav-item">
                     <a class="nav-link" href="{% url 'music' %}">Music</a>
-                </li> 
-                {% endif %}
+                </li>   
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'contact' %}">Contact</a>
-                </li>
-                {% if user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'logoutBCB' %}">Logout</a>
-                </li> 
-                <div class="collapse navbar-collapse " id="navbarNavDarkDropdown">
-                    <ul class="navbar-nav">
-                      <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          Edit Tools
-                        </a>
-                        <ul class="dropdown-menu bg-success" aria-labelledby="navbarDarkDropdownMenuLink">
-                          <li><a class="dropdown-item" href="{% url 'add_tune' %}">Add a Tune</a></li>
-                          <li><a class="dropdown-item" href="{% url 'add_news_item' %}">Add News Item</a></li>
-                          <li><a class="dropdown-item" href="{% url 'add_gallery_item' %}">Add Gallery Item</a></li>
-                          <li><a class="dropdown-item" href="{% url 'add_link' %}">Add Link Item</a></li>
-                          <li><a class="dropdown-item" href="{% url 'update_password' %}">Update Password</a></li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </div> 
-                  
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Hello, {{ user.username|default:"Guest" }}</a>
-                </li> 
-                {% else %}  
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'loginBCB' %}">Login</a>
-                </li> 
-                {% endif %}
-            </ul>   
-          
+                  <a class="nav-link" href="{% url 'logoutBCB' %}">Logout</a>
+              </li>
+
+                
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Edit
+                </a>
+                <ul class="dropdown-menu bg-success" aria-labelledby="navbarDarkDropdownMenuLink">
+                  <li><a class="dropdown-item" href="{% url 'add_tune' %}">Add a Tune</a></li>
+                  <li><a class="dropdown-item" href="{% url 'add_news_item' %}">Add News Item</a></li>
+                  <li><a class="dropdown-item" href="{% url 'add_gallery_item' %}">Add Gallery Item</a></li>
+                  <li><a class="dropdown-item" href="{% url 'add_link' %}">Add Link Item</a></li>
+                  <li><a class="dropdown-item" href="{% url 'update_password' %}">Update Password</a></li>
+                </ul>
+              </li>
+
+              {% else %}
+                            <li class="nav-item">
+                <a class="nav-link" href="{% url 'loginBCB' %}">Login</a>
+            </li> 
+                
+               {% endif %}
+            </ul>
+          </div>
         </div>
-      </nav>   
+      </nav>
     

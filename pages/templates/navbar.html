@@ -1,6 +1,6 @@
 
       
-      <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+      <nav class="navbar navbar-expand-sm navbar-dark bg-success">
         <div class="container">
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -27,10 +27,8 @@
                 {% if user.is_authenticated %}
               <li class="nav-item">
                     <a class="nav-link" href="{% url 'music' %}">Music</a>
-                </li>   
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'logoutBCB' %}">Logout</a>
-              </li>
+              </li>   
+
 
                 
               <li class="nav-item dropdown">
@@ -45,12 +43,17 @@
                   <li><a class="dropdown-item" href="{% url 'update_password' %}">Update Password</a></li>
                 </ul>
               </li>
-
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'logoutBCB' %}">Logout</a>
+              </li> 
+              <li class="nav-item right">
+                <a class="nav-link" href="#">Welcome {{user}}</a>
+              </li> 
               {% else %}
-                            <li class="nav-item">
-                <a class="nav-link" href="{% url 'loginBCB' %}">Login</a>
-            </li> 
-                
+
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'loginBCB' %}">Login</a>
+              </li>   
                {% endif %}
             </ul>
           </div>

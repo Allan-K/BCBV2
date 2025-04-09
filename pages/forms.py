@@ -52,7 +52,7 @@ class SongsForm(ModelForm):
 
         widgets = {
             'title': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Title'}),
-            'description': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Description'}),
+            'description': forms.Textarea(attrs={'class':'form-control', 'rows':'4', 'placeholder':'Description'}),
         }
 
 
@@ -63,7 +63,7 @@ class NewsForm(ModelForm):
 
         widgets = {
             'heading': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Heading'}),
-            'content_text': forms.Textarea(attrs={'class':'form-control', 'placeholder':'Description'}),
+            'content_text': forms.Textarea(attrs={'class':'form-control', 'rows':'4', 'placeholder':'Description'}),
         }
 
 class GalleryForm(ModelForm):
@@ -73,7 +73,7 @@ class GalleryForm(ModelForm):
 
         widgets = {
             'heading': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Heading'}),
-            'content_text': forms.Textarea(attrs={'class':'form-control', 'placeholder':'Description'}),
+            'content_text': forms.Textarea(attrs={'class':'form-control', 'rows':'4', 'placeholder':'Description'}),
         }
 
 class LinkForm(ModelForm):
@@ -82,6 +82,6 @@ class LinkForm(ModelForm):
         fields = ('link_name', 'description')
 
         widgets = {
-            'link_name': forms.TextInput(attrs={'class':'form-control', 'placeholder':'URL Link'}),
-            'description': forms.Textarea(attrs={'class':'form-control', 'placeholder':'Description'}),
+            'link_name': forms.TextInput(attrs={'class':'form-control', 'placeholder':'URL Link, must start: http://....'}),
+            'description': forms.Textarea(attrs={'class':'form-control', 'rows':'4', 'placeholder':'Description'}),
         } 

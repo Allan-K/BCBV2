@@ -210,6 +210,10 @@ def links(request):
     ordering = ['article_created_at']
     return render(request, 'links.html', {'links':links})
 
+def delete_link(request, id):
+    link = get_object_or_404(Links, id=id)
+    link.delete()
+    return redirect('links')
 
 def add_link(request):
     if request.method == 'POST':

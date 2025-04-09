@@ -12,6 +12,9 @@
 <table class="table table-striped">
     <thead>
         <th scope=""col>Description</th>
+        {% if user.is_authenticated %}
+        <th scope=""col>Delete</th>
+        {% endif %}
         <th scope=""col>Link</th>
 
     </thead>
@@ -19,6 +22,9 @@
 {% for link in links %}  
             <tr>
                 <td scope="row"><small>{{ link.description }}</small></td>
+                {% if user.is_authenticated %}
+                <td scope="row"><a href="{% url 'delete_link' link.id %}"" class="btn btn-secondary btn-sm" target="-blank">Delete Link</a></td>
+                {% endif %}
                 <td class="row align-middle" ><a href="{{ MEDIA_URL}}{{link.link_name}}" class="btn btn-secondary btn-sm" target="-blank">Click Here</a></td>
             </tr>
     </tbody>

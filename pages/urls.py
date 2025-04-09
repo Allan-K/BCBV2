@@ -21,6 +21,7 @@ urlpatterns = [
     path('add_link/', views.add_link, name='add_link'),
     path('delete_gallery_item/<int:id>', views.delete_gallery_item, name='delete_gallery_item'),
     path('delete_news_item/<int:id>', views.delete_news_item, name='delete_news_item'),
+    path('delete_link/<int:id>', views.delete_link, name='delete_link'),
     path('news/', views.news, name='news'),
     path('add_news_item/', views.add_news_item, name='add_news_item'),
     path('gallery/', views.gallery, name='gallery'),

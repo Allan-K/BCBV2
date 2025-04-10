@@ -64,3 +64,19 @@ class Links(models.Model):
 
     class Meta:
         ordering=['link_name']
+
+class Documents(models.Model):
+    heading = models.CharField(max_length=250)
+    text = models.TextField(blank=True)
+    doc_file= models.FileField(upload_to="documents/")
+    article_created_at = models.DateTimeField(default=timezone.now)
+    
+    class Meta:
+        ordering =['-article_created_at']
+
+    def __str__(self):
+        return str(self.heading)
+    
+    def delete(self):
+        self.image_file.delete()
+        super().delete()

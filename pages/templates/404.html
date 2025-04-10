@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+<div class="container mt-2">
+    {% block page_title %}
+    <h2 class="display-6">Error</h2>
+    {% endblock page_title%}
+    <div class="container pt-5">
+        <div class="row">
+            <div class="col-sm-12">There appears to have been an error as the page you are attempting to find doesn't exist.
+                Please <a href="{% url 'index' %}" >Click here</a> to go back to the Brampton Community Band's Home Page</a>
+            </div>
+
+        </div>
+    <br>
+    <br>
+    
+    </div>
+    
+{% endblock content %}

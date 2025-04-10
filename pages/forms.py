@@ -3,7 +3,7 @@ from django.contrib.auth.forms import AdminUserCreationForm, UserChangeForm, Set
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import ModelForm
-from pages.models import CustomUser, Songs, News, Gallery, Links
+from pages.models import CustomUser, Songs, News, Gallery, Links, Documents
 
 
 class CustomUserCreationForm(AdminUserCreationForm):
@@ -84,4 +84,15 @@ class LinkForm(ModelForm):
         widgets = {
             'link_name': forms.TextInput(attrs={'class':'form-control', 'placeholder':'URL Link, must start: http://....'}),
             'description': forms.Textarea(attrs={'class':'form-control', 'rows':'4', 'placeholder':'Description'}),
+        } 
+
+
+class DocumentForm(ModelForm):
+    class Meta:
+        model = Documents
+        fields = ('heading', 'text', 'doc_file', 'article_created_at')
+        
+        widgets = {
+            'heading': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Name of file'}),
+            'text': forms.Textarea(attrs={'class':'form-control', 'rows':'4', 'placeholder':'Description of file'}),
         } 

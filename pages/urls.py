@@ -10,7 +10,7 @@ urlpatterns = [
     path('logoutBCB', views.logoutBCB, name='logoutBCB'),
     path('update_password/', views.update_password, name='update_password'),
     path('music', views.music, name='music'),
-    path('music/songs/<str:name>', views.download_music, name='download_music'),   
+    path('songs/<str:name>', views.download_music, name='download_music'),   
     path('edit_music/<int:id>', views.edit_music, name='edit_music'),
     path('delete_tune/<int:id>', views.delete_tune, name='delete_tune'),
     path('add_tune/', views.add_tune, name='add_tune'),
@@ -27,6 +27,8 @@ urlpatterns = [
     path('gallery/', views.gallery, name='gallery'),
     path('add_gallery_item/', views.add_gallery_item, name='add_gallery_item'),
     path('links/', views.links, name='links'),
+    path('documents/', views.documents, name='documents'),
+    path('add_documents/', views.add_documents, name='add_documents'),
     path('contact/', views.contact, name='contact'),
 
 ]

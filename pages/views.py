@@ -7,8 +7,8 @@ from django.contrib import messages
 from django.urls import reverse_lazy
 from django.http import HttpResponse, Http404, FileResponse
 from django.template import loader
-from .forms import SongsForm, NewsForm, GalleryForm, LinkForm
-from pages.models import Songs, News, Gallery, Links
+from .forms import SongsForm, NewsForm, GalleryForm, LinkForm, DocumentForm
+from pages.models import Songs, News, Gallery, Links, Documents
 from django.core.files.storage import FileSystemStorage
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
@@ -245,3 +245,23 @@ def edit_gallery(request, id):
 def contact(request):
 
     return render(request, 'contact.html', {})
+
+def documents(request):
+    docs = Documents.objects.all()
+    ordering = ['article_created_at']
+    return render(request, 'documents.html', {'docs':docs})
+    
+
+def add_documents(request):
+    if request.method == 'POST':
+        form = DocumentForm(request.POST, request.FILES)
+        print('here')
+        if form.is_valid():
+            form.save()
+            return redirect('documents')
+        else:
+            print('Not Here')
+    else:
+        print('here 2')
+        form = DocumentForm()
+    return render(request, 'add_document.html', {'form':form})

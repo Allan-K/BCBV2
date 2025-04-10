@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+
+
+{% block page_title %}
+<div class="row"><h2 class="display-6">Document Storage</h2></div>
+{% endblock page_title%}
+
+<div class="table-responsive">
+    
+<table class="table table-striped">
+    <thead>
+        <th scope=""col>Title</th>
+        <th scope=""col>Description</th>
+        <th scope=""col>File</th>
+        <th>Edit</th>
+    </thead>
+    <tbody>
+        {% for doc in docs%}
+            <tr>
+                <td scope="row">{{ doc.heading }}</td>
+                <td scope="row"><small>{{ doc.text }}</small></td>
+
+            <td scope="row"><a href="#" class="btn btn-secondary btn-sm" target="-blank">Download Document</a></td>
+
+            <td scope="row"><a href="#" class="btn btn-secondary btn-sm">Edit</a></td></td>
+            </tr>
+
+        {% endfor %}
+    </tbody>
+</table>
+
+
+</div>
+{% endblock content %}

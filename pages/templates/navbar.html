@@ -28,7 +28,9 @@
               <li class="nav-item">
                     <a class="nav-link" href="{% url 'music' %}">Music</a>
               </li>   
-
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'documents' %}">Documents</a>
+              </li>
 
                 
               <li class="nav-item dropdown">
@@ -40,9 +42,11 @@
                   <li><a class="dropdown-item" href="{% url 'add_news_item' %}">Add News Item</a></li>
                   <li><a class="dropdown-item" href="{% url 'add_gallery_item' %}">Add Gallery Item</a></li>
                   <li><a class="dropdown-item" href="{% url 'add_link' %}">Add Link Item</a></li>
+                  <li><a class="dropdown-item" href="{% url 'add_documents' %}">Add a Document</a></li>
                   <li><a class="dropdown-item" href="{% url 'update_password' %}">Update Password</a></li>
                 </ul>
               </li>
+ 
               <li class="nav-item">
                   <a class="nav-link" href="{% url 'logoutBCB' %}">Logout</a>
               </li> 

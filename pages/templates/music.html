@@ -13,6 +13,7 @@
     <thead>
         <th scope=""col>Title</th>
         <th scope=""col>Description</th>
+        <th scope=""col>Type</th>
         <th scope=""col>Set</th>
         <th scope=""col>File</th>
         <th>Edit</th>
@@ -22,12 +23,13 @@
             <tr>
                 <td scope="row">{{ tune.title }}</td>
                 <td scope="row"><small>{{ tune.description }}</small></td>
-            {% if tune.is_set %}
-                <td scope="row">Yes</td>
-            {% else %}
-                <td scope="row">No</td>
-            {% endif %}
 
+                <td scope="row">{{ tune.tune_type }}</td>
+
+                <td>
+                    <input type="checkbox" name="tune.is_set" onclick="return false;" {% if tune.is_set %} checked {% endif %}>
+                </td>
+                
             <td scope="row"><a href="{{ MEDIA_URL}}{{tune.file}}" class="btn btn-secondary btn-sm" target="-blank">Download PDF</a></td>
 
             <td scope="row"><a href="{% url 'edit_music' tune.id %}" class="btn btn-secondary btn-sm">Edit</a></td></td>

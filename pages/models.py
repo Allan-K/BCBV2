@@ -4,17 +4,27 @@ from django.utils import timezone
 
 
 class CustomUser(AbstractUser):
-    pass
+    moderator = models.BooleanField(max_length=5, null=True, blank=True, default=False)
     # add additional fields in here
 
     def __str__(self):
         return self.username
     
 class Songs(models.Model):
+    TUNETYPE = (
+        (1, 'N/A'),
+        (2, 'Jig'),
+        (3, 'Reel'),
+        (4, 'Polka'),
+        (5, 'Listening_Tune')
+    )
+    
     title = models.CharField(max_length=50, null=True, blank=True, unique=True)
     description = models.TextField(blank=True)
-    is_set = models.BooleanField(default=False)
+    tune_type = models.IntegerField(choices=TUNETYPE, default=1, blank=True, null=True)
+    is_set = models.BooleanField(default=False, blank=True, null=True)
     file = models.FileField(upload_to="songs/")
+    moderated = models.BooleanField(default=False, blank=True, null=True)
 
     class Meta:
         ordering = ['id']

@@ -10,7 +10,7 @@ class CustomUserCreationForm(AdminUserCreationForm):
 
     class Meta:
         model = CustomUser
-        fields = ("first_name", "last_name", "username", "email")
+        fields = ("first_name", "last_name", "moderator", "username", "email")
 
 class CustomUserChangeForm(UserChangeForm):
 
@@ -27,6 +27,7 @@ class RegistrationForm(UserCreationForm):
             'first_name',
             'last_name',
             'email',
+            'moderator',
             'password1',
             'password2',
         )
@@ -48,11 +49,12 @@ class ChangePasswordForm(SetPasswordForm):
 class SongsForm(ModelForm):
     class Meta:
         model = Songs
-        fields = ('title', 'description', 'is_set', 'file')
+        fields = ('title', 'description', 'tune_type', 'is_set', 'file')
 
         widgets = {
             'title': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Title'}),
             'description': forms.Textarea(attrs={'class':'form-control', 'rows':'4', 'placeholder':'Description'}),
+            
         }
 
 

@@ -22,12 +22,14 @@ def index (request):
 def registration(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
-        if form.is_valid():edit_music
-        form.save()
+        if form.is_valid():
+            form.save()
+            print('saved')
             #login(request, user)
-
         return redirect("/")
+            
     else:
+       
         form= CustomUserCreationForm()
     return render(request, 'registration.html', {'form': form})
 
@@ -127,7 +129,8 @@ def edit_music(request, id):
     if request.method == "POST":
         edit_score.title = request.POST['title']
         edit_score.description = request.POST['description']
-        edit_score.is_set = request.POST['is_set']
+        edit_score.tune_type = request.POST['tune_type']
+        #edit_score.is_set = request.POST['is_set']
         edit_score.save()        
         return redirect('music')
     print('here')

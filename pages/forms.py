@@ -49,11 +49,12 @@ class ChangePasswordForm(SetPasswordForm):
 class SongsForm(ModelForm):
     class Meta:
         model = Songs
-        fields = ('title', 'description', 'tune_type', 'is_set', 'file')
+        fields = ('title', 'description', 'tune_type', 'is_set', 'moderated', 'file')
 
         widgets = {
             'title': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Title'}),
             'description': forms.Textarea(attrs={'class':'form-control', 'rows':'4', 'placeholder':'Description'}),
+
             
         }
 

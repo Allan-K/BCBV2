@@ -125,18 +125,18 @@ def download_music(request, name):
 
 
 def edit_music(request, id):
+ 
     edit_score = Songs.objects.get(id=id)
     if request.method == "POST":
         edit_score.title = request.POST['title']
         edit_score.description = request.POST['description']
         edit_score.tune_type = request.POST['tune_type']
         #edit_score.is_set = request.POST['is_set']
-        edit_score.save()        
+        edit_score.save()      
         return redirect('music')
-    print('here')
-    edit_score = Songs.objects.get(id=id)
-    context = {"edit_score":edit_score}
-    return render(request, 'edit_music.html', context=context)
+    else:
+        edit_score = Songs.objects.get(id=id)
+        return render(request, 'edit_music.html', {"edit_score":edit_score})
 
 def update_file(request, id):
     if request.method == 'POST':

@@ -12,16 +12,16 @@ class CustomUser(AbstractUser):
     
 class Songs(models.Model):
     TUNETYPE = (
-        (1, 'N/A'),
-        (2, 'Jig'),
-        (3, 'Reel'),
-        (4, 'Polka'),
-        (5, 'Listening_Tune')
+        ('N/A', 'N/A'),
+        ('Jig', 'Jig'),
+        ('Reel', 'Reel'),
+        ('Polka', 'Polka'),
+        ('LT', 'Listening_Tune')
     )
     
     title = models.CharField(max_length=50, null=True, blank=True, unique=True)
     description = models.TextField(blank=True)
-    tune_type = models.IntegerField(choices=TUNETYPE, default=1, blank=True, null=True)
+    tune_type = models.CharField(max_length=25, choices=TUNETYPE)
     is_set = models.BooleanField(default=False, blank=True, null=True)
     file = models.FileField(upload_to="songs/")
     moderated = models.BooleanField(default=False, blank=True, null=True)

@@ -16,15 +16,24 @@ class Songs(models.Model):
         ('Jig', 'Jig'),
         ('Reel', 'Reel'),
         ('Polka', 'Polka'),
-        ('LT', 'Listening_Tune')
+        ('Listening Tune', 'Listening_Tune')
+    )
+    SET = (
+        ('0', 'No'),
+        ('1', 'Yes')
+    )
+
+    MOD = (
+        ('No', 'No'),
+        ('Yes', 'Yes')
     )
     
     title = models.CharField(max_length=50, null=True, blank=True, unique=True)
     description = models.TextField(blank=True)
     tune_type = models.CharField(max_length=25, choices=TUNETYPE)
-    is_set = models.BooleanField(default=False, blank=True, null=True)
+    is_set = models.CharField(max_length=5, choices=SET, default=False, blank=True, null=True)
     file = models.FileField(upload_to="songs/")
-    moderated = models.BooleanField(default=False, blank=True, null=True)
+    moderated = models.CharField(max_length=5, choices=MOD, default=False, blank=True, null=True)
 
     class Meta:
         ordering = ['id']

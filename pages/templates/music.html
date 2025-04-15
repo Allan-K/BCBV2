@@ -23,7 +23,7 @@
 
         
         {% for tune in score|dictsort:"title" %}
-            {% if tune.moderated %}
+            {% if tune.moderated == 'Yes' %}
                 <tr>
                 
                     <td scope="row">{{ tune.title }}</td>
@@ -32,7 +32,7 @@
                     <td scope="row">{{ tune.tune_type }}</td>
 
                     <td>
-                        <input type="checkbox" name="tune.is_set" onclick="return false;" {% if tune.is_set %} checked {% endif %}>
+                        <input type="checkbox" name="tune.is_set" onclick="return false;" {% if tune.is_set == '1' %} checked {% endif %}>
                     </td>
                     <td scope="row">{{ tune.moderated }}</td>
                     <td scope="row"><a href="{{ MEDIA_URL}}{{tune.file}}" class="btn btn-secondary btn-sm" target="-blank">Download PDF</a></td>

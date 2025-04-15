@@ -124,19 +124,34 @@ def download_music(request, name):
     pdf.closed
 
 
+#def edit_music(request, id):
+
+
 def edit_music(request, id):
- 
-    edit_score = Songs.objects.get(id=id)
-    if request.method == "POST":
-        edit_score.title = request.POST['title']
-        edit_score.description = request.POST['description']
-        edit_score.tune_type = request.POST['tune_type']
-        #edit_score.is_set = request.POST['is_set']
-        edit_score.save()      
-        return redirect('music')
-    else:
-        edit_score = Songs.objects.get(id=id)
-        return render(request, 'edit_music.html', {"edit_score":edit_score})
+        tune = Songs.objects.get(id=id)
+        if request.method == 'POST':
+            form = SongsForm(request.POST, instance=tune)
+            if form.is_valid():
+                form.save()
+                return redirect('music') # prepopulate the form with an existing band
+        else:
+            form = SongsForm(instance=tune)
+                
+        return render(request, 'edit_music.html',{'form': form})
+
+
+
+    #edit_score = Songs.objects.get(id=id)
+    #if request.method == "POST":
+    #    edit_score.title = request.POST['title']
+    #    edit_score.description = request.POST['description']
+    #    edit_score.tune_type = request.POST['tune_type']
+    #    #edit_score.is_set = request.POST['is_set']
+    #    edit_score.save()      
+    #    return redirect('music')
+    #else:
+    #    edit_score = Songs.objects.get(id=id)
+    #    return render(request, 'edit_music.html', {"edit_score":edit_score})
 
 def update_file(request, id):
     if request.method == 'POST':

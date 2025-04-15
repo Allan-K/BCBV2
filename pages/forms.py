@@ -52,10 +52,11 @@ class SongsForm(ModelForm):
         fields = ('title', 'description', 'tune_type', 'is_set', 'moderated', 'file')
 
         widgets = {
-            'title': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Title'}),
+            'title': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Title', 'style': 'width:200px'}),
             'description': forms.Textarea(attrs={'class':'form-control', 'rows':'4', 'placeholder':'Description'}),
-
-            
+            'tune_type': forms.Select(attrs={'class':'form-control', 'style': 'width:200px'}),
+            'is_set': forms.Select(attrs={'class':'form-control', 'style': 'width:200px'}),
+            'moderated': forms.Select(attrs={'class':'form-control', 'style': 'width:200px'}),
         }
 
 

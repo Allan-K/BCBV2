@@ -1,40 +1,27 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
-{% load crispy_forms_filters %}
 {% block content %}
 
-
 {% block page_title %}
-<h2 class="display-6">Edit Entry</h2>
+<h2 class="display-6">Update a Tune</h2>
 {% endblock page_title%}
-<div class="container mt-3">
 
-    <form action="{% url 'edit_music' edit_score.id %}" method="POST">
+{% if messages %}
+{% for message in messages %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{% endfor %}
+{% endif %}
+
+<div class="container mt-2">
+    <form method='POST' action='' enctype="multipart/form-data">
         {% csrf_token %}
-        <div class="row">
-            <div class="form-group col-6 mb-0 ">
-                <input class="form-control"  name='title' type="text" value = '{{ edit_score.title }}' placeholder="Title"></p>
-            </div>
-      
-            <div class="form-group col-6 mb-0 ">
-                <input class="form-control" name='tune_type' type="text" value = '{{ edit_score.tune_type }}' placeholder="Tune Type" ></p>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <input class="form-control" name='description' type="text" value = '{{ edit_score.description}}' placeholder="Description" ></p>
-        </div>
-
-
-        <div class="form-group">
-            <input class="form-control" name='moderated' type="text" value = '{{ edit_score.moderated}}' placeholder="Moderated" ></p>
-        </div>
-
+        {{ form }}
         <button type="submit" class="btn btn-secondary">Save Update</button>
-        <a href="{% url 'delete_tune' edit_score.id %}">Delete song</a>
-    </form>
 
+    </form> 
 </div>
 <br>
-
 {% endblock content %}

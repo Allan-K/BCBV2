@@ -24,14 +24,23 @@
                   <a class="nav-link" href="{% url 'contact' %}">Contact</a>
               </li>
 
-                {% if user.is_authenticated %}
+             
+              {% if user.is_authenticated %}
+              {% if request.user.moderator == True %}
               <li class="nav-item">
-                    <a class="nav-link" href="{% url 'music' %}">Music</a>
-              </li>   
+                    <a class="nav-link" href="{% url 'musicMod' %}">Music</a>
+              </li> 
+                {% else %}  
+
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'music' %}">Music</a>
+              </li>  
+                {% endif %}
+
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'documents' %}">Documents</a>
               </li>
-
+             
                 
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">

@@ -16,11 +16,49 @@
 {% endif %}
 
 <div class="container mt-2">
-    <form method='POST' action='{% url "add_tune" %}' enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form|crispy}}
+    <div class=""form-group>
+        <form method='POST' action='{% url "add_tune" %}' enctype="multipart/form-data">
+            {% csrf_token %}
+            
 
-        <button type="submit" class="btn btn-secondary">Save Tune</button>
+            <div class="row ">
+
+                <div class="col-3 mt-3 ">
+                    {{form.title.label_tag}} 
+                    {{form.title}}
+                </div>            
+                <div class="col-3 mt-3 ">
+                    {{form.tune_type.label_tag}}
+                    {{form.tune_type}}
+                </div>
+                <div class="col-3 mt-3 ">
+                    {{form.is_set.label_tag}}
+                    {{form.is_set}}
+                </div>
+                <div class="col-3 mt-3 ">
+                    {{form.moderated.label_tag}}
+                    {{form.moderated}}
+                </div> 
+            </div>
+            <div class="row" >
+                <div class="col-12 mt-3 ">
+                    {{form.description.label_tag}}
+                    {{form.description}}
+                </div> 
+            </div>
+            <div class="row">
+                <div class="col-12 mt-3 ">
+                    {{form.file}}
+                </div> 
+            </div>
+            <br>
+            <button type="submit" class="btn btn-secondary">Save Update</button>
+            <br>
+
+
+    </div>
+   
+
     </form>
 </div>
 <br>

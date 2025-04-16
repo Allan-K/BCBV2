@@ -15,14 +15,15 @@
         <th scope=""col>Description</th>
         <th scope=""col>Type</th>
         <th scope=""col>Set</th>
+        <th scope=""col>Moderated</th>
         <th scope=""col>File</th>
-
+        <th>Edit</th>
     </thead>
     <tbody>
 
         {{ user }}
         {% for tune in score|dictsort:"title" %}
-            {% if tune.moderated == 'Yes' %}
+
                 <tr>
                 
                     <td scope="row">{{ tune.title }}</td>
@@ -33,14 +34,14 @@
                     <td>
                         <input type="checkbox" name="tune.is_set" onclick="return false;" {% if tune.is_set == '1' %} checked {% endif %}>
                     </td>
+                    <td scope="row">{{ tune.moderated }}</td>
 
                     <td scope="row"><a href="{{ MEDIA_URL}}{{tune.file}}" class="btn btn-secondary btn-sm" target="-blank">Download PDF</a></td>
 
-
+                    <td scope="row"><a href="{% url 'edit_music' tune.id %}" class="btn btn-secondary btn-sm">Edit</a></td></td>
 
                 </tr>
-                
-            {% endif %}
+
         {% endfor %}
     </tbody>
 </table>

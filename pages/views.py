@@ -8,7 +8,7 @@ from django.urls import reverse_lazy
 from django.http import HttpResponse, Http404, FileResponse
 from django.template import loader
 from .forms import SongsForm, NewsForm, GalleryForm, LinkForm, DocumentForm
-from pages.models import Songs, News, Gallery, Links, Documents
+from pages.models import Songs, News, Gallery, Links, Documents, CustomUser
 from django.core.files.storage import FileSystemStorage
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
@@ -27,7 +27,6 @@ def registration(request):
             print('saved')
             #login(request, user)
         return redirect("/")
-            
     else:
        
         form= CustomUserCreationForm()
@@ -84,6 +83,10 @@ def music(request):
     score = Songs.objects.all()
     return render(request, "music.html", {'score': score})
 
+def musicMod(request):
+    score = Songs.objects.all()
+    return render(request, "musicMod.html", {'score': score})
+
 def search_music(request):
     if request.method == 'GET':
         value = request.GET['title']
@@ -133,7 +136,7 @@ def edit_music(request, id):
             form = SongsForm(request.POST, instance=tune)
             if form.is_valid():
                 form.save()
-                return redirect('music') # prepopulate the form with an existing band
+                return redirect('musicMod') # prepopulate the form with an existing band
         else:
             form = SongsForm(instance=tune)
                 

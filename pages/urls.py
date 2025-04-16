@@ -9,6 +9,7 @@ urlpatterns = [
     path('loginBCB', views.loginBCB, name='loginBCB'),
     path('logoutBCB', views.logoutBCB, name='logoutBCB'),
     path('update_password/', views.update_password, name='update_password'),
+    path('musicMod', views.musicMod, name='musicMod'),    
     path('music', views.music, name='music'),
     path('songs/<str:name>', views.download_music, name='download_music'),   
     path('edit_music/<int:id>/change/', views.edit_music, name='edit_music'),

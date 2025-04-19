@@ -9,7 +9,8 @@
 
 <div>
 
-<form action="{% url 'search_music' %}" name='search' method="'GET">
+<form action="{% url 'search_music' %}" name='search' method="GET">
+
     <div class="input-group">
         <input class="form-control"  name='title' type="search" placeholder="Search"></p>
         <button type="submit" class="btn btn-secondary"  class="glyphicon glyphicon-search">Search</button>
@@ -26,12 +27,6 @@
 {% endfor %}
 
 {% endif %}
-
-
-</div>
-
-
-
 
 
 {% endblock content %}

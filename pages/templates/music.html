@@ -20,9 +20,8 @@
     </thead>
     <tbody>
 
-        {{ user }}
-        {% for tune in score|dictsort:"title" %}
-            {% if tune.moderated == 'Yes' %}
+        {% for tune in items_page %}
+
                 <tr>
                 
                     <td scope="row">{{ tune.title }}</td>
@@ -40,11 +39,12 @@
 
                 </tr>
                 
-            {% endif %}
+
         {% endfor %}
     </tbody>
 </table>
 
-
+{% include 'pagination.html' %}
+<br>
 </div>
 {% endblock content %}

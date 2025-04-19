@@ -26,16 +26,11 @@
 
              
               {% if user.is_authenticated %}
-              {% if request.user.moderator == True %}
-              <li class="nav-item">
-                    <a class="nav-link" href="{% url 'musicMod' %}">Music</a>
-              </li> 
-                {% else %}  
 
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'music' %}">Music</a>
               </li>  
-                {% endif %}
+
 
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'documents' %}">Documents</a>
@@ -48,6 +43,9 @@
                 </a>
                 <ul class="dropdown-menu bg-success" aria-labelledby="navbarDarkDropdownMenuLink">
                   <li><a class="dropdown-item" href="{% url 'add_tune' %}">Add a Tune</a></li>
+                  {% if request.user.moderator == True %}
+                  <li><a class="dropdown-item" href="{% url 'musicMod' %}">Music Moderator</a></li>
+                  {% endif %} 
                   <li><a class="dropdown-item" href="{% url 'add_news_item' %}">Add News Item</a></li>
                   <li><a class="dropdown-item" href="{% url 'add_gallery_item' %}">Add Gallery Item</a></li>
                   <li><a class="dropdown-item" href="{% url 'add_link' %}">Add Link Item</a></li>

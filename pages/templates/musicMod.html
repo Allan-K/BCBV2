@@ -21,8 +21,7 @@
     </thead>
     <tbody>
 
-        {{ user }}
-        {% for tune in score|dictsort:"title" %}
+        {% for tune in items_page|dictsort:"title" %}
 
                 <tr>
                 
@@ -47,5 +46,7 @@
 </table>
 
 
+{% include 'pagination.html' %}
 </div>
+<br>
 {% endblock content %}

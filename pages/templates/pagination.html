@@ -1,0 +1,31 @@
+
+
+{% if items_page.has_other_pages %}
+    <div class="btn-group" role="group" aria-label="Item pagination">
+        {% if items_page.has_previous %}
+            <a href="?page={{ items_page.previous_page_number }}" class="btn btn-secondary">&laquo;</a>
+        {% endif %}
+
+        {% for page_number in items_page.paginator.page_range %}
+            {% if items_page.number == page_number %}
+                <button class="btn btn-secondary active">
+                    <span>{{ page_number }} <span class="sr-only">(current)</span></span>
+                </button>
+            {% else %}
+                <a href="?page={{ page_number }}" class="btn btn-secondary">
+                    {{ page_number }}
+                </a>
+            {% endif %}
+        {% endfor %}
+
+        {% if items_page.has_next %}
+            <a href="?page={{ items_page.next_page_number }}" class="btn btn-secondary">&raquo;</a>
+        {% endif %}
+    </div>
+
+{% else %}
+    <p>No items found.</p>
+
+{% endif %}
+
+</div>

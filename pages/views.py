@@ -13,6 +13,7 @@ from django.core.files.storage import FileSystemStorage
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
 from django.views.generic.edit import UpdateView
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def index (request):
   return render(request, 'index.html', {})
@@ -80,22 +81,48 @@ def update_password(request):
         return redirect('loginBCB')
     
 def music(request):
-    score = Songs.objects.all()
-    return render(request, "music.html", {'score': score})
+    score = Songs.objects.filter(moderated='Yes').order_by('title').values()
+    page_num = request.GET.get('page', 1)
+    paginator = Paginator(score, 5)
+  
+    try:
+        items_page = paginator.page(page_num)
+        items_page_items = items_page.object_list
+    except PageNotAnInteger:
+        items_page = paginator.page(1)
+    except EmptyPage:
+        items_page = paginator.page(paginator.num_pages)
+    #score = Songs.objects.all()
+
+    return render(request, "musicMod.html", { "items_page": items_page})
 
 def musicMod(request):
-    score = Songs.objects.all()
-    return render(request, "musicMod.html", {'score': score})
+    score = Songs.objects.all().order_by('title').values()
+    page_num = request.GET.get('page', 1)
+    paginator = Paginator(score, 5)
+  
+    try:
+        items_page = paginator.page(page_num)
+        items_page_items = items_page.object_list
+    except PageNotAnInteger:
+        items_page = paginator.page(1)
+    except EmptyPage:
+        items_page = paginator.page(paginator.num_pages)
+    #score = Songs.objects.all()
+
+    return render(request, "musicMod.html", { "items_page": items_page})
 
 def search_music(request):
     if request.method == 'GET':
         value = request.GET['title']
+
         if value == '':
             messages.success(request, "Please enter a search criteria")
-            score = Songs.objects.all()
+            items_page = Songs.objects.all()
         else:
-            score = Songs.objects.filter(title__startswith = value)
-        return render(request, "music.html", {'score':score})
+            items_page = Songs.objects.filter(title__startswith = value)
+            print('score2', items_page)
+        return render(request, "music.html", {'items_page':items_page})
 
 
 def add_tune(request):

@@ -97,5 +97,5 @@ class Documents(models.Model):
         return str(self.heading)
     
     def delete(self):
-        self.image_file.delete()
+        self.doc_file.delete()
         super().delete()

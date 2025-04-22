@@ -295,9 +295,14 @@ def contact(request):
     return render(request, 'contact.html', {})
 
 def documents(request):
-    docs = Documents.objects.all()
+    docs = Documents.objects.all().values()
     ordering = ['article_created_at']
     return render(request, 'documents.html', {'docs':docs})
+
+def documentMod(request):
+    docs = Documents.objects.all().values()
+    ordering = ['article_created_at']
+    return render(request, 'documentMod.html', {'docs':docs})
     
 
 def add_documents(request):
@@ -313,3 +318,16 @@ def add_documents(request):
         print('here 2')
         form = DocumentForm()
     return render(request, 'add_document.html', {'form':form})
+
+def download_documents(request, name):
+    file = os.path.join(settings.BASE_DIR, 'upload/documents/',name)
+    with open(file, 'rb') as pdf:
+        response = HttpResponse(pdf.read(), content_type='application/pdf')
+        #response['Content-Disposition'] = 'inline;filename=some_file.pdf'
+        return response
+    pdf.closed
+
+def delete_document(request, id):
+    docs = get_object_or_404(Documents, id=id)
+    docs.delete()
+    return redirect('documents')

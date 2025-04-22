@@ -11,32 +11,23 @@
     
 <table class="table table-striped">
     <thead>
-        <th scope=""col>Title</th>
-        <th scope=""col>Description</th>
-        <th scope=""col>Type</th>
-        <th scope=""col>Set</th>
-        <th scope=""col>File</th>
-
+        <th scope="col">Title</th>
+        <th scope="col">Description</th>
+        <th scope="col">Type</th>
+        <th scope="col">Set</th>
+        <th scope="col">File</th>
     </thead>
     <tbody>
-
         {% for tune in items_page %}
 
-                <tr>
-                
+                <tr>               
                     <td scope="row">{{ tune.title }}</td>
                     <td scope="row"><small>{{ tune.description }}</small></td>
-
                     <td scope="row">{{ tune.tune_type }}</td>
-
                     <td>
                         <input type="checkbox" name="tune.is_set" onclick="return false;" {% if tune.is_set == '1' %} checked {% endif %}>
                     </td>
-
                     <td scope="row"><a href="{{ MEDIA_URL}}{{tune.file}}" class="btn btn-secondary btn-sm" target="-blank">Download PDF</a></td>
-
-
-
                 </tr>
                 
 

@@ -1,6 +1,6 @@
 
       
-      <nav class="navbar navbar-expand-sm navbar-dark bg-success">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-success">
         <div class="container">
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -45,6 +45,7 @@
                   <li><a class="dropdown-item" href="{% url 'add_tune' %}">Add a Tune</a></li>
                   {% if request.user.moderator == True %}
                   <li><a class="dropdown-item" href="{% url 'musicMod' %}">Music Moderator</a></li>
+                  <li><a class="dropdown-item" href="{% url 'documentMod' %}">Document Admin</a></li>
                   {% endif %} 
                   <li><a class="dropdown-item" href="{% url 'add_news_item' %}">Add News Item</a></li>
                   <li><a class="dropdown-item" href="{% url 'add_gallery_item' %}">Add Gallery Item</a></li>

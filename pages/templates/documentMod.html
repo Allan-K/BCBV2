@@ -15,7 +15,7 @@
         <th scope="col">Description</th>
         <th scope="col">Date Created</th>
         <th scope="col">File</th>
-        
+        <th scope="col">Delete</th>
     </thead>
     <tbody>
         {% for file in docs%}
@@ -24,7 +24,7 @@
                 <td width=""><small>{{ file.text }}</small></td>
                 <td width="15%"><small>{{ file.article_created_at|date:"d-M-Y" }}</small></td>
                 <td width="15%"><a href="{% get_media_prefix %}{{ file.doc_file }}" class="btn btn-secondary btn-sm" target="-blank">Read Document</a></td>
-               
+                <td width="10%"><a href="{% url 'delete_document' file.id %}" class="btn btn-secondary btn-sm">Delete</a></td></td>
             </tr>
 
         {% endfor %}

@@ -3,7 +3,7 @@ from django.contrib.auth.forms import AdminUserCreationForm, UserChangeForm, Set
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import ModelForm
-from pages.models import CustomUser, Songs, News, Gallery, Links, Documents
+from pages.models import CustomUser, Songs, SetList, Set, News, Gallery, Links, Documents
 
 
 class CustomUserCreationForm(AdminUserCreationForm):
@@ -99,4 +99,24 @@ class DocumentForm(ModelForm):
         widgets = {
             'heading': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Name of file'}),
             'text': forms.Textarea(attrs={'class':'form-control', 'rows':'4', 'placeholder':'Description of file'}),
+        } 
+
+class SetListForm(ModelForm):
+    class Meta:
+        model = SetList
+        fields = ('set', 'song', 'order')
+        
+        widgets = {
+            'set': forms.Select(attrs={'class':'form-control', 'placeholder':'Set Name'}),
+            'song': forms.Select(attrs={'class':'form-control', 'placeholder':'Tune Title'}),
+        } 
+
+class SetForm(ModelForm):
+    class Meta:
+        model = Set
+        fields = ('setTitle', 'setDate')
+        
+        widgets = {
+            'setTitle': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Set Name'}),
+            'setDate': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Set Date'}),
         } 

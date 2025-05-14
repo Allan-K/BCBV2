@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+
+{% block page_title %}
+<h2 class="display-6">Set List</h2>
+{% endblock page_title%}
+
+{% if messages %}
+{% for message in messages %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{% endfor %}
+{% endif %}
+
+<div class="table-responsive">
+    
+    <table class="table table-striped">
+        <thead>
+            <th scope="col">Title</th>
+            <th scope="col">View Set</th>
+
+        </thead>
+        <tbody>
+            {% for list in lists %}
+
+                    <tr>               
+                        <td scope="row">{{ list.set}}</td>
+                        <td scope="row"><a href="{% url 'view_set' list.set_id %}" class="btn btn-secondary btn-sm">View</a></td></td>
+
+                    </tr>
+                       
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <br>
+    </div>
+
+
+
+{% endblock content %}

@@ -7,8 +7,8 @@ from django.contrib import messages
 from django.urls import reverse_lazy
 from django.http import HttpResponse, Http404, FileResponse
 from django.template import loader
-from .forms import SongsForm, NewsForm, GalleryForm, LinkForm, DocumentForm
-from pages.models import Songs, News, Gallery, Links, Documents, CustomUser
+from .forms import SongsForm, NewsForm, GalleryForm, LinkForm, DocumentForm, SetListForm, SetForm
+from pages.models import Songs, News, Gallery, Links, Documents, CustomUser, SetList, Set
 from django.core.files.storage import FileSystemStorage
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
@@ -351,7 +351,7 @@ def documentMod(request):
     if request.user.is_authenticated:
         docs = Documents.objects.all().values()
         ordering = ['article_created_at']
-        return render(request, 'documentMod.html', {'docs':docs})
+        return render(request, 'documentMod.html',{'docs':docs})
     else:
         return render(request, 'login.html')
         
@@ -380,7 +380,7 @@ def download_documents(request, name):
             response = HttpResponse(pdf.read(), content_type='application/pdf')
             #response['Content-Disposition'] = 'inline;filename=some_file.pdf'
             return response
-        pdf.closed
+        pdf.closedvalues_list
     else:
         return render(request, 'login.html')
 
@@ -391,3 +391,47 @@ def delete_document(request, id):
         return redirect('documents')
     else:
         return render(request, 'login.html')
+    
+def create_set_list(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            form = SetListForm(request.POST)
+            print('here')
+            if form.is_valid():
+                form.save()
+                return redirect('music')
+            else:
+                print('Not Here')
+        else:
+            print('here 2')
+            form = SetListForm()
+        return render(request, 'create_set_list.html', {'form':form})
+    else:
+        return render(request, 'music.html')
+    
+def create_set(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            form = SetForm(request.POST)
+            print('here')
+            if form.is_valid():
+                form.save()
+                return redirect('create_set_list')
+            else:
+                print('Not Here')
+        else:
+            print('here 2')
+            form = SetForm()
+        return render(request, 'create_set.html', {'form':form})
+    else:
+        return render(request, 'music.html')
+    
+def set(request):
+    lists = SetList.objects.all()
+    ordering = ['order']
+    return render(request, 'set.html', {'lists':lists})
+
+def view_set(request, id):
+    items = SetList.objects.filter(set_id=id)
+    print(items)
+    return render(request, 'view_set.html', {'items':items})

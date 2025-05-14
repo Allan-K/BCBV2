@@ -27,10 +27,13 @@
              
               {% if user.is_authenticated %}
 
-                <li class="nav-item">
+              <li class="nav-item">
                   <a class="nav-link" href="{% url 'music' %}">Music</a>
               </li>  
 
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'set' %}">Set Lists</a>
+              </li> 
 
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'documents' %}">Documents</a>
@@ -51,6 +54,8 @@
                   {% if request.user.moderator == True %}
                   <li><a class="dropdown-item" href="{% url 'musicMod' %}">Music Moderator</a></li>
                   <li><a class="dropdown-item" href="{% url 'documentMod' %}">Document Admin</a></li>
+                  <li><a class="dropdown-item" href="{% url 'create_set_list' %}">Create Set List</a></li>
+                  <li><a class="dropdown-item" href="{% url 'create_set' %}">Create Set</a></li>
                   {% endif %} 
                   {% if user.is_superuser %}
                   <li><a class="dropdown-item" href="{% url 'registration' %}">Add a User</a></li>

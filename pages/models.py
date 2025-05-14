@@ -35,6 +35,7 @@ class Songs(models.Model):
     file = models.FileField(upload_to="songs/")
     moderated = models.CharField(max_length=5, choices=MOD, default=False, blank=True, null=True)
 
+
     class Meta:
         ordering = ['id']
 
@@ -99,3 +100,23 @@ class Documents(models.Model):
     def delete(self):
         self.doc_file.delete()
         super().delete()
+
+
+class Set(models.Model):
+    setTitle = models.CharField(max_length=50, null=True, blank=True, unique=True)
+    setDate = models.DateField(default=timezone.now)
+
+    class Meta:
+        ordering = ['-setDate']
+    def __str__(self):
+        return str(self.setTitle)
+    
+class SetList(models.Model):
+    set = models.ForeignKey(Set, on_delete=models.CASCADE)
+    song = models.ForeignKey(Songs, on_delete=models.CASCADE)
+    order = models.IntegerField(default=0)
+
+    class Meta:
+        ordering = ['order']
+    def __str__(self):
+        return str(self.set) + " - " + str(self.song)

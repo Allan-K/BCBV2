@@ -34,6 +34,10 @@ urlpatterns = [
     path('documentMod/', views.documentMod, name='documentMod'),
     path('add_documents/', views.add_documents, name='add_documents'),
     path('contact/', views.contact, name='contact'),
+    path('create_set_list/', views.create_set_list, name='create_set_list'),
+    path('create_set/', views.create_set, name='create_set'),
+    path('set/', views.set, name='set'),
+    path('view_set/<int:id>', views.view_set, name='view_set'),
 
 ]
 

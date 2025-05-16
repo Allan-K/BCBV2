@@ -29,8 +29,8 @@
             {% for list in lists %}
 
                     <tr>               
-                        <td scope="row">{{ list.set}}</td>
-                        <td scope="row"><a href="{% url 'view_set' list.set_id %}" class="btn btn-secondary btn-sm">View</a></td></td>
+                        <td scope="row">{{ list.setTitle }}</td>
+                        <td scope="row"><a href="{% url 'view_set' list.id %}" class="btn btn-secondary btn-sm">View</a></td></td>
 
                     </tr>
                        

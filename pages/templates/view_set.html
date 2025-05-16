@@ -4,7 +4,7 @@
 
 
 {% block page_title %}
-<div class="row"><h2 class="display-6">Set List</h2></div>
+<div class="row"><h2 class="display-6">{{ title }}</h2></div>
 {% endblock page_title%}
 
 
@@ -15,17 +15,19 @@
     <thead>
         
         <th scope="col">Tune Title</th>
+        <th scope="col">Type</th>
         <th scope="col">Order</th>
 
     </thead>
     <tbody>
-        
+
         {% for item in items %}
-        <h2>{{ item.set }}</h2>
+        
 
                 <tr>               
                     
-                    <td scope="row"><small>{{ item.song }}</small></td>
+                    <td scope="row">{{ item.song }}</td>
+                    <td scope="row">{{ item.song.tune_type }}</td>
                     <td scope="row">{{ item.order }}</td>
                     
                 </tr>

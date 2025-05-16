@@ -396,14 +396,12 @@ def create_set_list(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
             form = SetListForm(request.POST)
-            print('here')
             if form.is_valid():
                 form.save()
                 return redirect('music')
             else:
-                print('Not Here')
+                print('')
         else:
-            print('here 2')
             form = SetListForm()
         return render(request, 'create_set_list.html', {'form':form})
     else:
@@ -413,25 +411,24 @@ def create_set(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
             form = SetForm(request.POST)
-            print('here')
+
             if form.is_valid():
                 form.save()
                 return redirect('create_set_list')
             else:
-                print('Not Here')
+                print('')
         else:
-            print('here 2')
             form = SetForm()
         return render(request, 'create_set.html', {'form':form})
     else:
         return render(request, 'music.html')
     
 def set(request):
-    lists = SetList.objects.all()
+    lists = Set.objects.values()
     ordering = ['order']
     return render(request, 'set.html', {'lists':lists})
 
 def view_set(request, id):
     items = SetList.objects.filter(set_id=id)
-    print(items)
-    return render(request, 'view_set.html', {'items':items})
+    title = Set.objects.get(id=id)
+    return render(request, 'view_set.html', {'items':items, 'title':title})

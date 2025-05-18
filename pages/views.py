@@ -97,7 +97,7 @@ def music(request):
         except EmptyPage:
             items_page = paginator.page(paginator.num_pages)
         #score = Songs.objects.all()
-        return render(request, "musicMod.html", { "items_page": items_page})
+        return render(request, "music.html", { "items_page": items_page})
     else:
         return render(request, "login.html")
 

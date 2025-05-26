@@ -38,6 +38,7 @@ urlpatterns = [
     path('create_set/', views.create_set, name='create_set'),
     path('set/', views.set, name='set'),
     path('view_set/<int:id>', views.view_set, name='view_set'),
+    path('add_dance/', views.add_dance, name='add_dance'),
 
 ]
 

@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from .forms import CustomUserCreationForm, CustomUserChangeForm
-from .models import CustomUser, Songs, News, Gallery, Links, Documents
+from .models import CustomUser, Songs, News, Gallery, Links, Documents, Set, SetList, Dances
 
 
 
@@ -21,3 +21,6 @@ admin.site.register(News)
 admin.site.register(Gallery)
 admin.site.register(Links)
 admin.site.register(Documents)
+admin.site.register(Set)
+admin.site.register(SetList)
+admin.site.register(Dances)

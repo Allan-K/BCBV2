@@ -25,44 +25,59 @@
               </li>
 
              
-              {% if user.is_authenticated %}
+                  {% if user.is_authenticated %}
 
-              <li class="nav-item">
-                  <a class="nav-link" href="{% url 'music' %}">Music</a>
-              </li>  
+                  <li class="nav-item">
+                      <a class="nav-link" href="{% url 'music' %}">Music</a>
+                  </li>  
 
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'set' %}">Set Lists</a>
-              </li> 
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'set' %}">Set Lists</a>
+                  </li> 
 
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'documents' %}">Documents</a>
-              </li>
-             
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'documents' %}">Documents</a>
+                  </li>
+                                
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Edit
+                    </a>
+                    <ul class="dropdown-menu bg-success" aria-labelledby="navbarDarkDropdownMenuLink">
+                      <li><a class="dropdown-item" href="{% url 'add_tune' %}">Add a Tune</a></li>                     
+                      <li><a class="dropdown-item" href="{% url 'add_news_item' %}">Add News Item</a></li>
+                      <li><a class="dropdown-item" href="{% url 'add_gallery_item' %}">Add Gallery Item</a></li>
+                      <li><a class="dropdown-item" href="{% url 'add_link' %}">Add Link Item</a></li>
+                      <li><a class="dropdown-item" href="{% url 'add_documents' %}">Add a Document</a></li>
+                      <li><a class="dropdown-item" href="{% url 'update_password' %}">Update Password</a></li>
+                      {% if user.is_superuser %}
+                        <li><a class="dropdown-item" href="{% url 'registration' %}">Add a User</a></li>
+                      {% endif %}
+                    </ul> 
+                  </li>
                 
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Edit
-                </a>
-                <ul class="dropdown-menu bg-success" aria-labelledby="navbarDarkDropdownMenuLink">
-                  <li><a class="dropdown-item" href="{% url 'add_tune' %}">Add a Tune</a></li>
+                {% if request.user.moderator == True %}
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Moderator
+                    </a>
+                    <ul class="dropdown-menu bg-success" aria-labelledby="navbarDarkDropdownMenuLink">    
+                      
+                      <li><a class="dropdown-item" href="{% url 'musicMod' %}">Music Moderator</a></li>
+                      <li><a class="dropdown-item" href="{% url 'documentMod' %}">Document Admin</a></li>
+                      <li><a class="dropdown-item" href="{% url 'create_set_list' %}">Create Set List</a></li>
+                      <li><a class="dropdown-item" href="{% url 'create_set' %}">Create Set</a></li>
+                      <li><a class="dropdown-item" href="{% url 'add_dance' %}">Add a Dance</a></li>
+                     
+                      
+                    </ul> 
+                  </li>
+                {% endif %} 
+
                   
-                  <li><a class="dropdown-item" href="{% url 'add_news_item' %}">Add News Item</a></li>
-                  <li><a class="dropdown-item" href="{% url 'add_gallery_item' %}">Add Gallery Item</a></li>
-                  <li><a class="dropdown-item" href="{% url 'add_link' %}">Add Link Item</a></li>
-                  <li><a class="dropdown-item" href="{% url 'add_documents' %}">Add a Document</a></li>
-                  {% if request.user.moderator == True %}
-                  <li><a class="dropdown-item" href="{% url 'musicMod' %}">Music Moderator</a></li>
-                  <li><a class="dropdown-item" href="{% url 'documentMod' %}">Document Admin</a></li>
-                  <li><a class="dropdown-item" href="{% url 'create_set_list' %}">Create Set List</a></li>
-                  <li><a class="dropdown-item" href="{% url 'create_set' %}">Create Set</a></li>
-                  {% endif %} 
-                  {% if user.is_superuser %}
-                  <li><a class="dropdown-item" href="{% url 'registration' %}">Add a User</a></li>
-                  {% endif %}
-                  <li><a class="dropdown-item" href="{% url 'update_password' %}">Update Password</a></li>
-                </ul>
-              </li>
+                  
+                
+              
  
               <li class="nav-item">
                   <a class="nav-link" href="{% url 'logoutBCB' %}">Logout</a>

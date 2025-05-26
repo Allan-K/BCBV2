@@ -7,7 +7,7 @@ from django.contrib import messages
 from django.urls import reverse_lazy
 from django.http import HttpResponse, Http404, FileResponse
 from django.template import loader
-from .forms import SongsForm, NewsForm, GalleryForm, LinkForm, DocumentForm, SetListForm, SetForm
+from .forms import SongsForm, NewsForm, GalleryForm, LinkForm, DocumentForm, SetListForm, SetForm, AddDanceForm
 from pages.models import Songs, News, Gallery, Links, Documents, CustomUser, SetList, Set
 from django.core.files.storage import FileSystemStorage
 from django.core.exceptions import ObjectDoesNotExist
@@ -99,7 +99,8 @@ def music(request):
         #score = Songs.objects.all()
         return render(request, "music.html", { "items_page": items_page})
     else:
-        return render(request, "login.html")
+        messages.success(request, "Please log to access this page")
+        return render(request, 'login.html')
 
 def musicMod(request):
     if request.user.is_authenticated:
@@ -118,7 +119,8 @@ def musicMod(request):
 
         return render(request, "musicMod.html", { "items_page": items_page})
     else:
-        return render(request, "login.html")
+        messages.success(request, "Please log to access this page")
+        return render(request, 'login.html')
 
 def search_music(request):
     if request.method == 'GET':
@@ -148,6 +150,7 @@ def add_tune(request):
             form = SongsForm()
         return render(request, 'add_tune.html', {'form':form})
     else:
+        messages.success(request, "Please log to access this page")
         return render(request, 'login.html')
 
 def delete_tune(request, id):
@@ -156,6 +159,7 @@ def delete_tune(request, id):
         song.delete()
         return redirect('music')
     else:
+        messages.success(request, "Please log to access this page")
         return render(request, 'login.html')
 
 
@@ -171,8 +175,6 @@ def download_music(request, name):
         return render(request, 'login.html')
 
 
-#def edit_music(request, id):
-
 
 def edit_music(request, id):
     if request.user.is_authenticated:
@@ -187,22 +189,9 @@ def edit_music(request, id):
                 
         return render(request, 'edit_music.html',{'form': form})
     else:
+        messages.success(request, "Please log to access this page")
         return render(request, 'login.html')
 
-
-
-
-    #edit_score = Songs.objects.get(id=id)
-    #if request.method == "POST":
-    #    edit_score.title = request.POST['title']
-    #    edit_score.description = request.POST['description']
-    #    edit_score.tune_type = request.POST['tune_type']
-    #    #edit_score.is_set = request.POST['is_set']
-    #    edit_score.save()      
-    #    return redirect('music')
-    #else:
-    #    edit_score = Songs.objects.get(id=id)
-    #    return render(request, 'edit_music.html', {"edit_score":edit_score})
 
 def update_file(request, id):
     if request.user.is_authenticated:
@@ -223,6 +212,7 @@ def update_file(request, id):
         else:
             return render(request, 'update_file.html')
     else:
+        messages.success(request, "Please log to access this page")
         return render(request, 'login.html')
 
 
@@ -246,6 +236,7 @@ def add_gallery_item(request):
             form = GalleryForm()
         return render(request, 'add_gallery_item.html', {'form':form})
     else:
+        messages.success(request, "Please log to access this page")
         return render(request, 'login.html')
 
 def delete_gallery_item(request, id):
@@ -254,6 +245,7 @@ def delete_gallery_item(request, id):
         img.delete()
         return redirect('gallery')
     else:
+        messages.success(request, "Please log to access this page")
         return render(request, 'login.html')
 
 
@@ -273,6 +265,7 @@ def add_news_item(request):
             form = NewsForm()
         return render(request, 'add_news_item.html', {'form':form})
     else:
+        messages.success(request, "Please log to access this page")
         return render(request, 'login.html')
 
 
@@ -287,6 +280,7 @@ def delete_news_item(request, id):
         img.delete()
         return redirect('news')
     else:
+        messages.success(request, "Please log to access this page")
         return render(request, 'login.html')
 
 
@@ -301,6 +295,7 @@ def delete_link(request, id):
         link.delete()
         return redirect('links')
     else:
+        messages.success(request, "Please log to access this page")
         return render(request, 'login.html')
 
 def add_link(request):
@@ -318,6 +313,7 @@ def add_link(request):
             form = LinkForm()
         return render(request, 'add_link.html', {'form':form})
     else:
+        messages.success(request, "Please log to access this page")
         return render(request, 'login.html')
 
 
@@ -333,6 +329,7 @@ def edit_gallery(request, id):
         edit_img = Gallery.objects.get(id=id)
         return render(request, 'edit_gallery.html', {"edit_img":edit_img})
     else:
+        messages.success(request, "Please log to access this page")
         return render(request, 'login.html')
 
 def contact(request):
@@ -345,6 +342,7 @@ def documents(request):
         ordering = ['article_created_at']
         return render(request, 'documents.html', {'docs':docs})
     else:
+        messages.success(request, "Please log to access this page")
         return render(request, 'login.html')
 
 def documentMod(request):
@@ -405,7 +403,8 @@ def create_set_list(request):
             form = SetListForm()
         return render(request, 'create_set_list.html', {'form':form})
     else:
-        return render(request, 'music.html')
+        messages.success(request, "Please log to access this page")
+        return render(request, 'login.html')
     
 def create_set(request):
     if request.user.is_authenticated:
@@ -421,14 +420,39 @@ def create_set(request):
             form = SetForm()
         return render(request, 'create_set.html', {'form':form})
     else:
-        return render(request, 'music.html')
+        messages.success(request, "Please log to access this page")
+        return render(request, 'login.html')
     
 def set(request):
-    lists = Set.objects.values()
-    ordering = ['order']
-    return render(request, 'set.html', {'lists':lists})
+    if request.user.is_authenticated:
+        lists = Set.objects.values()
+        ordering = ['order']
+        return render(request, 'set.html', {'lists':lists})
+    else:
+        messages.success(request, "Please log to access this page")
+        return render(request, 'login.html')    
 
 def view_set(request, id):
-    items = SetList.objects.filter(set_id=id)
-    title = Set.objects.get(id=id)
-    return render(request, 'view_set.html', {'items':items, 'title':title})
+    if request.user.is_authenticated:
+        items = SetList.objects.filter(set_id=id)
+        title = Set.objects.get(id=id)
+        return render(request, 'view_set.html', {'items':items, 'title':title})
+    else:
+        messages.success(request, "Please log to access this page")
+        return render(request, 'login.html')
+    
+def add_dance(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            form = AddDanceForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect('music')
+            else:
+                print('')
+        else:
+            form = AddDanceForm()
+        return render(request, 'add_dance.html', {'form':form})
+    else:
+        messages.success(request, "Please log to access this page")
+        return render(request, 'login.html')

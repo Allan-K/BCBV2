@@ -3,7 +3,7 @@ from django.contrib.auth.forms import AdminUserCreationForm, UserChangeForm, Set
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import ModelForm
-from pages.models import CustomUser, Songs, SetList, Set, News, Gallery, Links, Documents
+from pages.models import CustomUser, Songs, SetList, Set, News, Gallery, Links, Documents, Dances
 
 
 class CustomUserCreationForm(AdminUserCreationForm):
@@ -104,7 +104,7 @@ class DocumentForm(ModelForm):
 class SetListForm(ModelForm):
     class Meta:
         model = SetList
-        fields = ('set', 'song', 'order')
+        fields = ('set', 'song', 'dance', 'notes', 'order')
         
         widgets = {
             'set': forms.Select(attrs={'class':'form-control', 'placeholder':'Set Name'}),
@@ -120,3 +120,14 @@ class SetForm(ModelForm):
             'setTitle': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Set Name'}),
             'setDate': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Set Date'}),
         } 
+
+
+class AddDanceForm(ModelForm):
+    class Meta:
+        model = Dances
+        fields = ('danceName',)
+        
+        widgets = {
+            'danceName': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Dance Name'}),
+
+        }

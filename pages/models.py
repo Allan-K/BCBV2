@@ -41,7 +41,7 @@ class Songs(models.Model):
 
     def __str__(self):
         return str(self.title)
-    
+
     def delete(self):
         self.file.delete()
         super().delete()
@@ -111,12 +111,24 @@ class Set(models.Model):
     def __str__(self):
         return str(self.setTitle)
     
+
+class Dances(models.Model):
+    danceName = models.CharField(max_length=50, null=True, blank=True, unique=True)
+
+    def __str__(self):
+        return str(self.danceName)
+
+    
+    
 class SetList(models.Model):
     set = models.ForeignKey(Set, on_delete=models.CASCADE)
     song = models.ForeignKey(Songs, on_delete=models.CASCADE)
+    dance = models.ForeignKey(Dances, on_delete=models.CASCADE)
+    notes = models.TextField(blank=True)
     order = models.IntegerField(default=0)
 
     class Meta:
         ordering = ['order']
     def __str__(self):
         return str(self.set) + " - " + str(self.song)
+    

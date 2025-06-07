@@ -1,0 +1,43 @@
+
+{% block content %}
+{% load static %}
+
+
+{% block page_title %}
+<div class="row"><h2 class="display-6">{{ title }}</h2></div>
+{% endblock page_title%}
+{{ id }}
+
+
+<div class="table-responsive">
+    
+<table class="table table-striped">
+    <thead>
+        <th scope="col">Dance Type</th>
+        <th scope="col">Tune Title</th>       
+        <th scope="col">Notes</th>
+        <th scope="col">Order</th>
+
+    </thead>
+    <tbody>
+
+        {% for item in context %}
+        
+
+                <tr>               
+                    <td scope="row">{{ item.dance.danceName }}</td>
+                    <td scope="row">{{ item.song }}</td>                
+                    <td scope="row">{{ item.notes }}</td>
+                    <td scope="row">{{ item.order }}</td>
+                    
+                </tr>
+                
+
+        {% endfor %}
+    </tbody>
+</table>
+
+
+<br>
+</div>
+{% endblock content %}

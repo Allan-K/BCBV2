@@ -4,6 +4,7 @@ from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import ModelForm
 from pages.models import CustomUser, Songs, SetList, Set, News, Gallery, Links, Documents, Dances
+from bootstrap_datepicker_plus.widgets import DatePickerInput
 
 
 class CustomUserCreationForm(AdminUserCreationForm):
@@ -109,16 +110,19 @@ class SetListForm(ModelForm):
         widgets = {
             'set': forms.Select(attrs={'class':'form-control', 'placeholder':'Set Name'}),
             'song': forms.Select(attrs={'class':'form-control', 'placeholder':'Tune Title'}),
+           
         } 
 
 class SetForm(ModelForm):
     class Meta:
         model = Set
-        fields = ('setTitle', 'setDate')
+        fields = ('setTitle', 'venue', 'setDate')
+
         
         widgets = {
             'setTitle': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Set Name'}),
-            'setDate': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Set Date'}),
+            #'setDate': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Set Date'}),
+            'start_date': DatePickerInput,
         } 
 
 

@@ -24,6 +24,7 @@
             <th scope="col">Title</th>
             <th scope="col">Date</th>
             <th scope="col">View Set</th>
+            <th scope="col">PDF</th>
 
         </thead>
         <tbody>
@@ -33,6 +34,7 @@
                         <td scope="row">{{ list.setTitle }}</td>
                         <td scope="row">{{ list.setDate|date:"d-m-Y" }}</td>
                         <td scope="row"><a href="{% url 'view_set' list.id %}" class="btn btn-secondary btn-sm">View</a></td></td>
+                        <td scope="row"><a href="{% url 'generate_pdf' list.id %}" class="btn btn-secondary btn-sm" target="-blank">Generate pdf</a></td></td>
 
                     </tr>
                        

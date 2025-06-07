@@ -15,6 +15,17 @@ from django.db.models import Q
 from django.views.generic.edit import UpdateView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
+from django_renderpdf.views import PDFView
+from django.http import FileResponse
+import io
+from reportlab.pdfgen import canvas
+from reportlab.lib.units import inch
+from reportlab.lib.pagesizes import A4
+from reportlab.lib import colors 
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer, Preformatted
+from reportlab.lib.styles import getSampleStyleSheet
+
+
 
 def index (request):
   return render(request, 'index.html', {})
@@ -456,3 +467,50 @@ def add_dance(request):
     else:
         messages.success(request, "Please log to access this page")
         return render(request, 'login.html')
+    
+
+def generate_pdf(request, id): 
+    response = HttpResponse(content_type='application/pdf') 
+    response['Content-Disposition'] = 'filename="generate_pdf.pdf"' 
+    doc = SimpleDocTemplate(response, pagesize=A4, title='Set List') 
+
+    # Create a list to hold the table data 
+    table_data = [['Tune', 'Dance', 'Notes', 'Set']]  # Add headers 
+ 
+    # Fetch data from the database 
+    for item in SetList.objects.filter(set_id=id): 
+        table_data.append([item.song.title, item.dance.danceName, item.notes, item.set.setTitle])  # Add your fields 
+ 
+    styles = getSampleStyleSheet()
+    # Create a table 
+    table = Table(table_data, colWidths=(2*inch, 2*inch, 2*inch, 2*inch)) 
+    style = TableStyle([ 
+        ('BACKGROUND', (0, 0), (-1, 0), colors.grey), 
+        ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke), 
+        ('ALIGN', (0, 0), (-1, -1), 'CENTER'), 
+        ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'), 
+        ('BOTTOMPADDING', (0, 0), (-1, 0), 12), 
+        ('BACKGROUND', (0, 1), (-1, -1), colors.beige), 
+        ('GRID', (0, 0), (-1, -1), 1, colors.black), 
+    ]) 
+    table.setStyle(style) 
+
+    for item in SetList.objects.filter(set_id=id): 
+        flowables = [
+            Paragraph(item.set.setTitle, styles['Title']),
+            Paragraph(item.set.venue, styles['Title']),
+            Paragraph(item.set.setDate.strftime('%d-%m-%Y'), styles['Title']),
+            table,
+            Spacer(1 * inch, 1 * inch),
+            Paragraph('Brampton Community Band', styles['Title']),
+    ]
+    def onFirstPage(canvas, doc):
+        canvas.drawCentredString(100, 100, 'Text drawn with onFirstPage')
+
+    
+
+    # Build the PDF 
+    doc.build(flowables, onFirstPage=onFirstPage) 
+    
+    return response
+

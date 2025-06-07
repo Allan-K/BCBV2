@@ -104,6 +104,7 @@ class Documents(models.Model):
 
 class Set(models.Model):
     setTitle = models.CharField(max_length=50, null=True, blank=True, unique=True)
+    venue = models.CharField(max_length=100, blank=True, null=True)
     setDate = models.DateField(default=timezone.now)
 
     class Meta:

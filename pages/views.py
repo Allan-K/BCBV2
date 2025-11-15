@@ -7,8 +7,8 @@ from django.contrib import messages
 from django.urls import reverse_lazy
 from django.http import HttpResponse, Http404, FileResponse
 from django.template import loader
-from .forms import SongsForm, NewsForm, GalleryForm, LinkForm, DocumentForm, SetListForm, SetForm, AddDanceForm
-from pages.models import Songs, News, Gallery, Links, Documents, CustomUser, SetList, Set
+from .forms import SongsForm, NewsForm, GalleryForm, LinkForm, DocumentForm, SetListForm, SetForm, AddDanceForm, TestimonialsForm
+from pages.models import Songs, News, Gallery, Links, Documents, CustomUser, SetList, Set, Testimonials
 from django.core.files.storage import FileSystemStorage
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
@@ -514,3 +514,26 @@ def generate_pdf(request, id):
     
     return response
 
+def testimonials(request):
+    articles = Testimonials.objects.all()
+    ordering = ['article_created_at']
+    return render(request, 'testimonials.html', {'articles':articles})
+
+
+def add_testimonial_item(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            form = TestimonialsForm(request.POST, request.FILES)
+            print('here')
+            if form.is_valid():
+                form.save()
+                return redirect('testimonials')
+            else:
+                print('Not Here')
+        else:
+            print('here 2')
+            form = TestimonialsForm()
+        return render(request, 'add_testimonial_item.html', {'form':form})
+    else:
+        messages.success(request, "Please log to access this page")
+        return render(request, 'login.html')

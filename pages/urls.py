@@ -40,6 +40,8 @@ urlpatterns = [
     path('view_set/<int:id>', views.view_set, name='view_set'),
     path('add_dance/', views.add_dance, name='add_dance'),
     path('generate_pdf/<int:id>', views.generate_pdf, name='generate_pdf'),
+    path('testimonials/', views.testimonials, name='testimonials'),
+    path('add_testimonial_item/', views.add_testimonial_item, name='add_testimonial_item'),
 
 
 ]

@@ -61,6 +61,24 @@ class News(models.Model):
     def delete(self):
         self.image_file.delete()
         super().delete()
+
+
+
+class Testimonials(models.Model):
+    heading = models.CharField(max_length=250)
+    content_text = models.TextField(blank=True)
+    image_file= models.ImageField(upload_to="images/")
+    article_created_at = models.DateTimeField(default=timezone.now)
+    
+    class Meta:
+        ordering =['-article_created_at']
+
+    def __str__(self):
+        return str(self.heading)
+    
+    def delete(self):
+        self.image_file.delete()
+        super().delete()
     
 class Gallery(models.Model):
     heading = models.CharField(max_length=250)
@@ -69,7 +87,7 @@ class Gallery(models.Model):
     article_created_at = models.DateTimeField(default=timezone.now)
     
     class Meta:
-        ordering =['-article_created_at']
+        ordering =['article_created_at']
 
     def __str__(self):
         return str(self.heading)

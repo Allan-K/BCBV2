@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+{% block page_title %}
+<h2 class="display-6">Add a Testimonial</h2>
+{% endblock page_title%}
+
+{% if messages %}
+{% for message in messages %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{% endfor %}
+{% endif %}
+
+<div class="container mt-2">
+    <form method='POST' action='{% url "add_testimonial_item" %}' enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|crispy}}
+
+        <button type="submit" class="btn btn-secondary">Save Testimonial</button>
+    </form>
+</div>
+<br>
+{% endblock content %}

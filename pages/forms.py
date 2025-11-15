@@ -3,7 +3,7 @@ from django.contrib.auth.forms import AdminUserCreationForm, UserChangeForm, Set
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import ModelForm
-from pages.models import CustomUser, Songs, SetList, Set, News, Gallery, Links, Documents, Dances
+from pages.models import CustomUser, Songs, SetList, Set, News, Gallery, Links, Documents, Dances, Testimonials
 from bootstrap_datepicker_plus.widgets import DatePickerInput
 
 
@@ -135,3 +135,13 @@ class AddDanceForm(ModelForm):
             'danceName': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Dance Name'}),
 
         }
+
+class TestimonialsForm(ModelForm):
+    class Meta:
+        model = Testimonials
+        fields = ('heading', 'content_text', 'image_file', 'article_created_at')
+
+        widgets = {
+            'heading': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Heading'}),
+            'content_text': forms.Textarea(attrs={'class':'form-control', 'rows':'4', 'placeholder':'Description'}),
+        }        

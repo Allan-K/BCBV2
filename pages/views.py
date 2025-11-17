@@ -537,3 +537,23 @@ def add_testimonial_item(request):
     else:
         messages.success(request, "Please log to access this page")
         return render(request, 'login.html')
+    
+
+def edit_testimonial(request, id):
+    if request.user.is_authenticated:
+        edit_img = Testimonials.objects.get(id=id)
+        if request.method == "POST":
+            edit_img.heading= request.POST['heading']
+            edit_img.content_text = request.POST['content_text']
+            edit_img.save()        
+            return redirect('testimonials')
+        print('here')
+        edit_img = Testimonials.objects.get(id=id)
+        return render(request, 'edit_testimonial.html', {"edit_img":edit_img})
+    else:
+        messages.success(request, "Please log to access this page")
+        return render(request, 'login.html')
+    
+def hire_us(request):
+
+    return render(request, 'hire_us.html', {})

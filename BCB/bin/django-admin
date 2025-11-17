@@ -1,4 +1,4 @@
-#!/home/allan/Documents/BCBV2/BCB/bin/python3
+#!/home/allan/Documents/BCBV2/BCB/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

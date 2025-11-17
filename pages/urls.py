@@ -42,7 +42,8 @@ urlpatterns = [
     path('generate_pdf/<int:id>', views.generate_pdf, name='generate_pdf'),
     path('testimonials/', views.testimonials, name='testimonials'),
     path('add_testimonial_item/', views.add_testimonial_item, name='add_testimonial_item'),
-
+    path('edit_testimonial/<int:id>', views.edit_testimonial, name='edit_testimonial'),
+    path('hire_us/', views.hire_us, name='hire_us'),
 
 ]
 

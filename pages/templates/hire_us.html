@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-2">
+
+    {% block page_title %}
+    <h2 class="display-6">Hire Us</h2>
+    {% endblock page_title%}
+
+    <div class="container mt-3">
+
+            <div class="row">
+        <div class="col-sm-6"> 
+            Ideal for birthday parties, special occasions and community events, our ceilidh band is available for hire.  We are regularly asked to play at events in and around Chesterfield, as well as organising our own ceilidhs or barn dances.
+
+Our friendly callers will guide your party through the dances. No dance experience necessary. With our lively jigs and reels, we can offer something for all ages and our callers will be able to get even the most reluctant dancer onto the floor for your next event/party.
+
+We feature a range of instruments including flute, guitar, fiddle, mandolin, and accordion, performing English, Scottish, and other folk tunes.
+
+We provide all of our own sound equipment.
+
+If you have any questions about the band or you would like to enquire about booking us, please e-mail: <a href='mailto:bcband@hotmail.co.uk'>bcband@hotmail.co.uk</a> or fill in the <a href='{% url 'contact' %}'>Contact Us form</a>.
+        </div>
+        <div class="col-sm-6">
+            <img src="{% static 'IMG_9056.JPG' %}" alt="Dancers" class="img-fluid">
+            <br>
+            <br>       
+    </div>
+<br>
+<br>
+</div>
+
+{% endblock content %}

@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-
+<script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js" integrity="sha384-/TgkGk7p307TH7EXJDuUlgG3Ce1UVolAOFopFekQkkXihi5u/6OCvVKyz1W+idaz" crossorigin="anonymous"></script>
 
 <div class="container pt-5">
     <div class="row">
@@ -18,6 +18,31 @@ Aside from our regular rehearsal, on the third Thursday of each month we all mee
     </div>
 <br>
 <br>
+
+<button
+    hx-get="/modal"
+    hx-target="#modals-here"
+    hx-trigger="click"
+    data-bs-toggle="modal"
+    data-bs-target="#modals-here"
+    class="btn primary">Open Modal</button>
+
+<div id="modals-here"
+    class="modal modal-blur fade"
+    style="display: none"
+    aria-hidden="false"
+    tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content"></div>
+    </div>
+</div>
+
+
+
+
+
+
+
 
 {% if user.is_authenticated %}
 

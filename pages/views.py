@@ -24,13 +24,23 @@ from reportlab.lib.pagesizes import A4
 from reportlab.lib import colors 
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer, Preformatted
 from reportlab.lib.styles import getSampleStyleSheet
+from django_htmx.http import trigger_client_event
 
 
 
 def index (request):
-  return render(request, 'index.html', {})
+    articles = News.objects.all()
+    print('articles', articles.values('image_file'))
+    return render(request, 'index.html', {articles:'articles'})
+
   #template = loader.get_template('index.html')
   #return HttpResponse(template.render())
+
+def modal(request):
+    articles = News.objects.all()
+    print('articles', articles)
+    return render(request, "modal.html", {articles:'articles'})
+    #return trigger_client_event(response, "modal:show", after="swap")
 
 
 def registration(request):
@@ -557,3 +567,7 @@ def edit_testimonial(request, id):
 def hire_us(request):
 
     return render(request, 'hire_us.html', {})
+
+
+def modal(request):
+    return render(request, 'modal.html', {})

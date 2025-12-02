@@ -2,15 +2,10 @@
 {% load static %}
 
 {% block content %}
-<script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js" integrity="sha384-/TgkGk7p307TH7EXJDuUlgG3Ce1UVolAOFopFekQkkXihi5u/6OCvVKyz1W+idaz" crossorigin="anonymous"></script>
 
 <div class="container pt-5">
     <div class="row">
-        <div class="col-sm-6">Brampton Community Band of twenty or so musicians play a range of acoustic melody and rhyme instruments.  Our repertoire includes English, Celtic, French, Québécois and Scandi folk and dance tunes, traditional and modern.  
-
-We organise several of our own ceilidhs each year in Chesterfield where we teach and call dances that everybody can join in with.  We are also delighted when we are hired to play at community barn dances, private parties, birthdays and weddings.
-
-Aside from our regular rehearsal, on the third Thursday of each month we all meet at The Victoria Inn, S40 3QY for a traditional pub session. 
+        <div class="col-sm-6">Brampton Community Band of twenty or so musicians play a range of acoustic melody and rhyme instruments.  Our repertoire includes English, Celtic, French, Québécois and Scandi folk and dance tunes, traditional and modern. We organise several of our own ceilidhs each year in Chesterfield where we teach and call dances that everybody can join in with.  We are also delighted when we are hired to play at community barn dances, private parties, birthdays and weddings. Aside from our regular rehearsal, on the third Thursday of each month we all meet at The Victoria Inn, S40 3QY for a traditional pub session. 
         </div>
         <div class="col-sm-6">
             <img src="{% static 'frontImage.jpg' %}" alt="Band photo at Ashover" class="img-fluid">
@@ -18,6 +13,7 @@ Aside from our regular rehearsal, on the third Thursday of each month we all mee
     </div>
 <br>
 <br>
+
 
 <button
     hx-get="/modal"
@@ -37,13 +33,6 @@ Aside from our regular rehearsal, on the third Thursday of each month we all mee
     </div>
 </div>
 
-
-
-
-
-
-
-
 {% if user.is_authenticated %}
 
 {% else %}
@@ -54,3 +43,4 @@ Aside from our regular rehearsal, on the third Thursday of each month we all mee
 
 
 {% endblock content %}
+

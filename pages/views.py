@@ -30,18 +30,15 @@ from django_htmx.http import trigger_client_event
 
 def index (request):
     articles = News.objects.all()
-    print('articles', articles.values('image_file'))
     return render(request, 'index.html', {articles:'articles'})
 
   #template = loader.get_template('index.html')
   #return HttpResponse(template.render())
 
-def modal(request):
-    articles = News.objects.all()
-    print('articles', articles)
-    return render(request, "modal.html", {articles:'articles'})
-    #return trigger_client_event(response, "modal:show", after="swap")
-
+def modal_view(request):
+    flyer = News.objects.first()
+    return render(request, "modal.html", {"flyer": flyer})
+    return trigger_client_event(response, "modal:show", after="swap")
 
 def registration(request):
     if request.method == 'POST':

@@ -1,24 +1,16 @@
 
 {% load static %}
-
 <div class="modal-dialog modal-dialog-centered">
-  
-    <div class="modal-content">
+  <div class="modal-content">
     <div class="modal-header">
-      <h5 class="modal-title">Next Event</h5>
+      <h5 class="modal-title">Coming Soon</h5>
     </div>
-
     <div class="modal-body">
-        
-        {{ article.id}}
-            <p>For your calender</p>
-            <img src="uploads/images/Celidh_Poster.webp" class="img-fluid rounded-start" alt="Image">
-        
+      <img src="{% get_media_prefix %}{{ flyer.image_file }}">
+      
     </div>
-  
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
     </div>
   </div>
-  
 </div>

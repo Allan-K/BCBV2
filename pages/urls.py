@@ -44,7 +44,8 @@ urlpatterns = [
     path('add_testimonial_item/', views.add_testimonial_item, name='add_testimonial_item'),
     path('edit_testimonial/<int:id>', views.edit_testimonial, name='edit_testimonial'),
     path('hire_us/', views.hire_us, name='hire_us'),
-    path('modal/', views.modal, name='modal'),
+    path('modal/', views.modal_view, name='modal'),
+
 
 ]
 

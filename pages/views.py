@@ -29,16 +29,17 @@ from django_htmx.http import trigger_client_event
 
 
 def index (request):
-    articles = News.objects.all()
-    return render(request, 'index.html', {articles:'articles'})
-
+    flyer = News.objects.all().order_by('-article_created_at')[:1]
+    #print(articles)
+    return render(request, 'index.html', {"flyer": flyer})
+    
   #template = loader.get_template('index.html')
   #return HttpResponse(template.render())
 
 def modal_view(request):
     flyer = News.objects.first()
     return render(request, "modal.html", {"flyer": flyer})
-    return trigger_client_event(response, "modal:show", after="swap")
+
 
 def registration(request):
     if request.method == 'POST':

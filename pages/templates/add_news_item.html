@@ -3,7 +3,7 @@
 {% block content %}
 
 {% block page_title %}
-<h2 class="display-6">Add a News Item</h2>
+<h2 class="display-6">Add a Event</h2>
 {% endblock page_title%}
 
 {% if messages %}
@@ -20,7 +20,7 @@
         {% csrf_token %}
         {{ form|crispy}}
 
-        <button type="submit" class="btn btn-secondary">Save News Item</button>
+        <button type="submit" class="btn btn-secondary">Save Event</button>
     </form>
 </div>
 <br>

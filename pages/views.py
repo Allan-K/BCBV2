@@ -36,9 +36,9 @@ def index (request):
   #template = loader.get_template('index.html')
   #return HttpResponse(template.render())
 
-def modal_view(request):
-    flyer = News.objects.first()
-    return render(request, "modal.html", {"flyer": flyer})
+#def modal_view(request):
+#    flyer = News.objects.first()
+#    return render(request, "modal.html", {"flyer": flyer})
 
 
 def registration(request):

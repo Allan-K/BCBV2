@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<div class="container pt-5">
+<div class="container mt-2">
     <div class="row">
         <div class="col-sm-6">Brampton Community Band of twenty or so musicians play a range of acoustic melody and rhyme instruments.  Our repertoire includes English, Celtic, French, Québécois and Scandi folk and dance tunes, traditional and modern. We organise several of our own ceilidhs each year in Chesterfield where we teach and call dances that everybody can join in with.  We are also delighted when we are hired to play at community barn dances, private parties, birthdays and weddings. Aside from our regular rehearsal, on the third Thursday of each month we all meet at The Victoria Inn, S40 3QY for a traditional pub session. 
         </div>
@@ -11,9 +11,11 @@
             <img src="{% static 'frontImage.jpg' %}" alt="Band photo at Ashover" class="img-fluid">
         </div>
     </div>
-<br>
-<br>
 
+</div>
+
+<br>
+<br>
 
 <div class="splash">  
     {% for i in flyer %}
@@ -38,9 +40,12 @@
         splashScreen.style.opacity = '100';
         setTimeout(()=>{
             splashScreen.classList.add('hidden');
-        }, 10);
+        }, 5);
     });
 
+    
+
 </script>
+
 {% endblock content %}
 

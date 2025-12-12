@@ -64,15 +64,29 @@ body {
 	cursor: pointer;
 	position: fixed;
 	text-align: center;
-	top: 50%;
-	left: 50%;
-	height: 95%;
-	width: 95%;;
-	transform: translate(-50%, -50%);
-	transition: all ease-in-out 600ms;
+
+	top: 0;
+	left: 0;
+	height: 100vh;
+	width: 95%;
+  z-index: 2000;
 
 }
 	
+.splash.display-none {
+	cursor: pointer;
+	position: fixed;
+  opacity: 0;
+	text-align: center;
+	top: 10;
+	left: 10;
+	height: 0%;
+	max-width: 0%;
+  z-index: -999;
+  transition: all 1.5s;
+
+}
+
 .hidden{
 		display: none;
 		transition: 0.5s;
@@ -86,3 +100,21 @@ body {
 	border-radius: 50px;
 }
 
+.splash.display-none > img {
+
+	max-width: 0vw;
+	height: 0vh;
+  border: 0px;
+
+}
+
+@keyframes fadeIn {
+  to{
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1s ease-in forwards;
+}

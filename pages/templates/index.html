@@ -17,7 +17,8 @@
 <br>
 <br>
 
-<div class="splash">  
+<div class="splash fade-in"> 
+  
     {% for i in flyer %}
     <img src="{% get_media_prefix %}{{ i.image_file }}">
 
@@ -35,13 +36,14 @@
 </div>
 
 <script>
-    var splashScreen = document.querySelector('.splash');
-    splashScreen.addEventListener('click', ()=>{
-        splashScreen.style.opacity = '100';
+    const splash = document.querySelector('.splash');
+    document.addEventListener('DOMContentLoaded', (e)=>{
         setTimeout(()=>{
-            splashScreen.classList.add('hidden');
-        }, 5);
+            splash.classList.add('display-none');
+        }, 5000);
     });
+
+
 
     
 

@@ -64,11 +64,12 @@ class SongsForm(ModelForm):
 class NewsForm(ModelForm):
     class Meta:
         model = News
-        fields = ('heading', 'content_text', 'image_file', 'article_created_at')
+        fields = ('heading', 'content_text', 'image_file', 'expire', 'article_created_at')
 
         widgets = {
             'heading': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Heading'}),
             'content_text': forms.Textarea(attrs={'class':'form-control', 'rows':'4', 'placeholder':'Description'}),
+            'expire' : DatePickerInput(options={'format':'DD-MMM-YYYY'}),
         }
 
 class GalleryForm(ModelForm):

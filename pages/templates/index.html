@@ -20,11 +20,19 @@
 <div class="splash fade-in"> 
   
     {% for i in flyer %}
+
+    
+    {% if i.expire|date:"dmYHis" > day|date:"dmYHis" %}
     <img src="{% get_media_prefix %}{{ i.image_file }}">
+    {% else %}
+    <img src="{{ 'uploads/images/Default.jpg' }}" alt="Expired Flyer">
+    {% endif %}
+    
 
 
     {% endfor %}
-    
+      <div id="time">
+    </div>  
 </div>
 
 {% if user.is_authenticated %}
@@ -34,20 +42,31 @@
 {% endif %}
 
 </div>
-
 <script>
     const splash = document.querySelector('.splash');
     document.addEventListener('DOMContentLoaded', (e)=>{
         setTimeout(()=>{
             splash.classList.add('display-none');
-        }, 5000);
+        }, 7000); 
+    splash.addEventListener('click', (e)=>{
+        splash.classList.add('hidden');    
+    },610);
     });
-
-
-
-    
-
 </script>
+
+<script>
+        function updateTime() {
+            const date = new Date();
+            const options = { year: 'numeric', month: 'short', day: 'numeric' };
+            const time = date.toLocaleTimeString();
+            const day = date.toLocaleDateString(undefined, options);
+            document.getElementById('time').innerHTML =
+                `Today is: ${day}`;
+        }
+
+        setInterval(updateTime, 1000);
+        updateTime();
+    </script>
 
 {% endblock content %}
 

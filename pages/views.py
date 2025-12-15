@@ -24,22 +24,15 @@ from reportlab.lib.pagesizes import A4
 from reportlab.lib import colors 
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer, Preformatted
 from reportlab.lib.styles import getSampleStyleSheet
-from django_htmx.http import trigger_client_event
-
+from django.utils import timezone
 
 
 def index (request):
     flyer = News.objects.all().order_by('-article_created_at')[:1]
-    #print(articles)
-    return render(request, 'index.html', {"flyer": flyer})
-    
-  #template = loader.get_template('index.html')
-  #return HttpResponse(template.render())
+    time = timezone.now().timestamp()
 
-#def modal_view(request):
-#    flyer = News.objects.first()
-#    return render(request, "modal.html", {"flyer": flyer})
 
+    return render(request, 'index.html', {"flyer": flyer, 'time':time, 'day':timezone.now()})
 
 def registration(request):
     if request.method == 'POST':

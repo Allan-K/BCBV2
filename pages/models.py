@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils import timezone
-
+from datetime import date
 
 class CustomUser(AbstractUser):
     moderator = models.BooleanField(max_length=5, null=True, blank=True, default=False)
@@ -50,10 +50,14 @@ class News(models.Model):
     heading = models.CharField(max_length=250)
     content_text = models.TextField(blank=True)
     image_file= models.ImageField(upload_to="images/")
+    expire = models.DateTimeField(default=timezone.now)
     article_created_at = models.DateTimeField(default=timezone.now)
     
     class Meta:
         ordering =['-article_created_at']
+
+    def is_expired(self):
+        return date.today() > self.expire()
 
     def __str__(self):
         return str(self.heading)
@@ -67,7 +71,7 @@ class News(models.Model):
 class Testimonials(models.Model):
     heading = models.CharField(max_length=250)
     content_text = models.TextField(blank=True)
-    image_file= models.ImageField(upload_to="images/")
+    image_file= models.ImageField(upload_to="images/")   
     article_created_at = models.DateTimeField(default=timezone.now)
     
     class Meta:

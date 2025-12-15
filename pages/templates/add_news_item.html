@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-
+{% block extrahead %}
+{{ form.media }}
+{% endblock %}
 {% block page_title %}
 <h2 class="display-6">Add a Event</h2>
 {% endblock page_title%}

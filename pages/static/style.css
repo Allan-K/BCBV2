@@ -83,8 +83,7 @@ body {
 	height: 0%;
 	max-width: 0%;
   z-index: -999;
-  transition: all 1.5s;
-
+ 
 }
 
 .hidden{
@@ -114,7 +113,20 @@ body {
   }
 }
 
+@keyframes fadeOut {
+  to{
+    opacity: 0;
+  }
+}
+
 .fade-in {
   opacity: 0;
   animation: fadeIn 1s ease-in forwards;
+
+}
+
+.fade-out {
+  opacity: 1;
+  animation: fadeOut 1s ease-out forwards;
+  
 }

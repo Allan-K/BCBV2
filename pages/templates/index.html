@@ -31,8 +31,7 @@
 
 
     {% endfor %}
-      <div id="time">
-    </div>  
+
 </div>
 
 {% if user.is_authenticated %}
@@ -53,20 +52,6 @@
     },610);
     });
 </script>
-
-<script>
-        function updateTime() {
-            const date = new Date();
-            const options = { year: 'numeric', month: 'short', day: 'numeric' };
-            const time = date.toLocaleTimeString();
-            const day = date.toLocaleDateString(undefined, options);
-            document.getElementById('time').innerHTML =
-                `Today is: ${day}`;
-        }
-
-        setInterval(updateTime, 1000);
-        updateTime();
-    </script>
 
 {% endblock content %}
 
